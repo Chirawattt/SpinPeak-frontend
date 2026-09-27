@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:#fff;font-family:'IBM Plex Sans Thai',system-ui,sans-serif}a{color:#0B2B33}a:hover{color:#12707f}</style></helmet>
+
+<div style="background:#FFFFFF;color:#0B2B33;font-family:'IBM Plex Sans Thai',sans-serif;width:100%">
+
+<div style="display:flex;align-items:center;justify-content:space-between;padding:18px max(clamp(18px,5vw,56px),calc((100% - 1180px) / 2));border-bottom:1px solid #E8F1F4">
+<img src="uploads/SpinePeakLogo.PNG" alt="Spine Peak" style="height:44px;width:auto;display:block">
+<div style="display:flex;gap:12px 20px;align-items:center;font-size:15px;font-weight:500;flex-wrap:wrap;justify-content:flex-end">
+<a href="Spine Peak Courses.dc.html" style="text-decoration:none;color:#0B2B33;font-weight:600;border-bottom:2px solid #85E5FF;padding-bottom:2px">คอร์สเรียน</a>
+<a href="Spine Peak Courses.dc.html" style="text-decoration:none;color:#0B2B33">SET คอร์ส</a>
+<a href="#teacher" style="text-decoration:none;color:#0B2B33">แนะนำครู</a>
+<a href="#reviews" style="text-decoration:none;color:#0B2B33">รีวิว</a>
+<a href="#login" style="text-decoration:none;color:#0B2B33;padding:10px 22px;background:#85E5FF;border:1.5px solid #85E5FF;border-radius:999px;font-weight:600">เข้าสู่ระบบ</a>
+</div>
+</div>
+
+<div style="position:relative;overflow:hidden;border-bottom:1px solid #DCEEF3;background:radial-gradient(circle at 6% 18%,#D6F5FF 0,rgba(214,245,255,0) 38%),radial-gradient(circle at 94% 70%,#EAFBFF 0,rgba(234,251,255,0) 42%),#FFFFFF">
+<div style="position:absolute;inset:0;background-image:radial-gradient(#BFE9F5 1.4px,transparent 1.5px);background-size:26px 26px;opacity:.35;pointer-events:none"></div>
+<div style="position:absolute;right:30%;top:38px;width:54px;height:54px;border-radius:50%;border:1.5px dashed #9FDDEE;pointer-events:none"></div>
+<div style="position:absolute;right:40px;bottom:-50px;width:180px;height:180px;border-radius:50%;border:1.5px solid #DCF2F8;pointer-events:none"></div>
+<div style="position:relative;padding:20px max(clamp(18px,5vw,56px),calc((100% - 1180px) / 2)) 0;font-size:14px;color:#5A7A82"><a href="#" style="color:#5A7A82;text-decoration:none">หน้าแรก</a> / <span style="color:#0B2B33">คอร์สเรียนทั้งหมด</span></div>
+<div style="position:relative;padding:22px max(clamp(18px,5vw,56px),calc((100% - 1180px) / 2)) 40px">
+<h1 style="font-family:'Anuphan',sans-serif;font-size:clamp(29px,5.6vw,46px);font-weight:700;line-height:1.15;margin:0 0 12px;letter-spacing:-.01em">คอร์สเรียนทั้งหมด</h1>
+<p style="font-size:17px;line-height:1.7;color:#4A6C75;margin:0 0 26px;max-width:560px">เลือกระดับชั้นของน้องก่อน แล้วค่อยกรองตามหัวข้อที่สนใจ ทุกคอร์สซื้อครั้งเดียวดูได้ตลอดชีพ</p>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+<a href="Spine Peak Courses.dc.html" style="{{ t.style }}" onClick="{{ t.onClick }}">{{ t.label }} <span style="font-weight:400;opacity:.7;font-size:14px">{{ t.countText }}</span></a>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div style="padding:20px max(clamp(18px,5vw,56px),calc((100% - 1180px) / 2));border-bottom:1px solid #EDF5F7;background:#FBFEFF;display:flex;flex-direction:column;gap:12px;position:sticky;top:0;z-index:4">
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<input type="search" value="{{ q }}" onChange="{{ onSearch }}" placeholder="ค้นหาชื่อคอร์ส หรือหัวข้อ เช่น พันธุศาสตร์" style="flex:3 1 340px;min-width:0;box-sizing:border-box;font-family:inherit;font-size:15px;color:#0B2B33;background:#fff;border:1px solid #D6E8ED;border-radius:999px;padding:12px 20px;outline:none">
+<select value="{{ topic }}" onChange="{{ onTopic }}" style="{{ selStyle }}">
+<sc-for list="{{ topicOptions }}" as="opt" hint-placeholder-count="4"><option value="{{ opt }}">{{ opt }}</option></sc-for>
+</select>
+</div>
+</div>
+
+<div style="padding:26px max(clamp(18px,5vw,56px),calc((100% - 1180px) / 2)) 10px;display:flex;justify-content:space-between;align-items:baseline">
+<div style="font:600 13px 'IBM Plex Mono',monospace;color:#3E7784">{{ resultText }}</div>
+<a href="Spine Peak Courses.dc.html" onClick="{{ onReset }}" style="font-size:14.5px;color:#3E7784;text-decoration:none;border-bottom:1px solid #CFE4EA">ล้างตัวกรองทั้งหมด</a>
+</div>
+
+<div style="padding:12px max(clamp(18px,5vw,56px),calc((100% - 1180px) / 2)) 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px">
+<sc-for list="{{ courses }}" as="c" hint-placeholder-count="9">
+<div style="border:1px solid #E3EEF1;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;background:#fff">
+<div style="height:140px;background:repeating-linear-gradient(135deg,#E6F9FF,#E6F9FF 10px,#D4F2FB 10px,#D4F2FB 20px);display:flex;align-items:center;justify-content:center;font:400 11px 'IBM Plex Mono',monospace;color:#3E7784">ปกคอร์ส 16:9</div>
+<div style="padding:18px 20px 20px;display:flex;flex-direction:column;gap:9px;flex:1">
+<div style="font:600 12px 'IBM Plex Mono',monospace;color:#3E7784">{{ c.grade }} · {{ c.tagText }}</div>
+<div style="font-family:'Anuphan',sans-serif;font-size:20px;font-weight:600;line-height:1.3">{{ c.title }}</div>
+<div style="font-size:14.5px;color:#5A7A82;line-height:1.6;flex:1">{{ c.desc }}</div>
+<div style="display:flex;gap:14px;font-size:13.5px;color:#5A7A82"><span>{{ c.meta }}</span><span>{{ c.startText }}</span></div>
+<div style="display:flex;align-items:baseline;gap:10px;margin-top:4px">
+<span style="font-family:'Anuphan',sans-serif;font-size:25px;font-weight:700">{{ c.priceText }}</span>
+<sc-if value="{{ c.hasOld }}" hint-placeholder-val="{{ true }}"><span style="font-size:15px;color:#96AEB5;text-decoration:line-through">{{ c.oldText }}</span></sc-if>
+</div>
+<a href="Spine Peak Course Detail.dc.html" style="text-decoration:none;text-align:center;background:#85E5FF;color:#0B2B33;font-weight:600;font-size:16px;padding:13px;border-radius:999px;margin-top:4px">ดูรายละเอียด</a>
+</div>
+</div>
+</sc-for>
+</div>
+
+<sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+<div style="margin:0 clamp(18px,5vw,56px) 24px;border:1px dashed #CFE4EA;border-radius:18px;padding:clamp(26px,5vw,44px);text-align:center;background:#FBFEFF">
+<div style="font-family:'Anuphan',sans-serif;font-size:22px;font-weight:600;margin-bottom:8px">ยังไม่มีคอร์สที่ตรงกับตัวกรองนี้</div>
+<div style="font-size:15.5px;color:#5A7A82">ลองลดตัวกรองลงสักข้อ หรือทักมาถามครูหนามได้เลย</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ hasMore }}" hint-placeholder-val="{{ true }}">
+<div ref="{{ sentinelRef }}" style="padding:20px max(clamp(18px,5vw,56px),calc((100% - 1180px) / 2)) 40px;text-align:center;font:400 14px 'IBM Plex Mono',monospace;color:#8CA9B1">กำลังโหลดคอร์สเพิ่ม…</div>
+</sc-if>
+
+<div style="background:#F6FDFF;border-top:1px solid #E3EEF1;padding:52px max(clamp(18px,5vw,56px),calc((100% - 1180px) / 2));position:relative;overflow:hidden">
+<div style="position:absolute;inset:0;background-image:radial-gradient(#BFE9F5 1.4px,transparent 1.5px);background-size:24px 24px;opacity:.28;pointer-events:none"></div>
+<div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:36px;align-items:center">
+<div>
+<div style="font:600 12px 'IBM Plex Mono',monospace;color:#3E7784;margin-bottom:12px">ไม่แน่ใจว่าเรียนอะไรดี</div>
+<h2 style="font-family:'Anuphan',sans-serif;font-size:clamp(25px,3.8vw,32px);font-weight:700;margin:0 0 14px;line-height:1.25">บอกชั้นปีกับเป้าหมาย<br>เดี๋ยวครูจัดคอร์สให้</h2>
+<p style="font-size:16.5px;line-height:1.75;color:#4A6C75;margin:0 0 22px;max-width:380px">ทักมาบอกว่าอยู่ชั้นไหน คะแนนตอนนี้ประมาณเท่าไหร่ และอยากไปถึงไหน ครูหนามจะแนะนำลำดับคอร์สที่ควรเรียนให้</p>
+<a href="#" style="text-decoration:none;background:#0B2B33;color:#fff;font-size:16px;font-weight:600;padding:15px 30px;border-radius:999px;display:inline-block">ขอคำแนะนำจากครู</a>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:14px">
+<a href="Spine Peak Courses.dc.html" style="text-decoration:none;color:#0B2B33;background:#fff;border:1px solid #E3EEF1;border-radius:16px;padding:20px"><div style="font-family:'Anuphan',sans-serif;font-size:18px;font-weight:600;margin-bottom:6px">อยากปูพื้นใหม่</div><div style="font-size:14.5px;color:#5A7A82;line-height:1.6">เริ่มจากคอร์สตามชั้นปี แล้วค่อยต่อโจทย์</div></a>
+<a href="Spine Peak Courses.dc.html" style="text-decoration:none;color:#0B2B33;background:#fff;border:1px solid #E3EEF1;border-radius:16px;padding:20px"><div style="font-family:'Anuphan',sans-serif;font-size:18px;font-weight:600;margin-bottom:6px">จะสอบเข้า ม.4</div><div style="font-size:14.5px;color:#5A7A82;line-height:1.6">คอร์สสอบเข้า + ตะลุยโจทย์ ม.ต้น</div></a>
+<a href="Spine Peak Courses.dc.html" style="text-decoration:none;color:#0B2B33;background:#fff;border:1px solid #E3EEF1;border-radius:16px;padding:20px"><div style="font-family:'Anuphan',sans-serif;font-size:18px;font-weight:600;margin-bottom:6px">จะลงสนามแข่ง</div><div style="font-size:14.5px;color:#5A7A82;line-height:1.6">Biocontest, สอวน. และ SET คู่หู</div></a>
+<a href="Spine Peak Courses.dc.html" style="text-decoration:none;color:#0B2B33;background:#fff;border:1px solid #E3EEF1;border-radius:16px;padding:20px"><div style="font-family:'Anuphan',sans-serif;font-size:18px;font-weight:600;margin-bottom:6px">เหลือเวลาไม่มาก</div><div style="font-size:14.5px;color:#5A7A82;line-height:1.6">คอร์สสรุปก่อนสอบ 30 วัน</div></a>
+</div>
+</div>
+</div>
+
+<div style="padding:52px max(clamp(18px,5vw,56px),calc((100% - 1180px) / 2))">
+<h2 style="font-family:'Anuphan',sans-serif;font-size:clamp(24px,3.6vw,30px);font-weight:700;margin:0 0 24px">รีวิวจากนักเรียน</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px">
+<div style="border:1px solid #E3EEF1;border-radius:16px;padding:24px"><div style="font-size:16px;line-height:1.75;margin-bottom:16px">“เลือกคอร์สง่ายมาก กดระดับชั้นตัวเองแล้วเจอที่ใช่เลยค่ะ”</div><div style="font-size:14px;color:#5A7A82">น้องมายด์ · ม.5</div></div>
+<div style="border:1px solid #E3EEF1;border-radius:16px;padding:24px"><div style="font-size:16px;line-height:1.75;margin-bottom:16px">“ซื้อคอร์สพันธุศาสตร์ไปก่อน พอเข้าใจแล้วค่อยต่อคอร์สแข่งขัน”</div><div style="font-size:14px;color:#5A7A82">น้องปูน · ม.6</div></div>
+<div style="border:1px solid #E3EEF1;border-radius:16px;padding:24px"><div style="font-size:16px;line-height:1.75;margin-bottom:16px">“ราคาไม่แรง แล้วดูย้อนหลังได้ตลอด คุ้มมากครับ”</div><div style="font-size:14px;color:#5A7A82">น้องเจได · ม.4</div></div>
+</div>
+</div>
+
+<div style="padding:0 max(clamp(18px,5vw,56px),calc((100% - 1180px) / 2)) 52px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:36px;align-items:start">
+<div>
+<h2 style="font-family:'Anuphan',sans-serif;font-size:30px;font-weight:700;margin:0 0 12px">คำถามที่พบบ่อย</h2>
+<div style="display:flex;flex-direction:column">
+<div style="padding:18px 0;border-bottom:1px solid #E3EEF1"><div style="font-size:17px;font-weight:600;margin-bottom:6px">ซื้อหลายคอร์สพร้อมกันลดไหม</div><div style="font-size:15px;color:#5A7A82;line-height:1.7">คอร์สที่จับคู่กันได้จะมี SET ให้เลือก ราคาถูกกว่าซื้อแยก</div></div>
+<div style="padding:18px 0;border-bottom:1px solid #E3EEF1"><div style="font-size:17px;font-weight:600;margin-bottom:6px">เรียนข้ามชั้นได้ไหม</div><div style="font-size:15px;color:#5A7A82;line-height:1.7">ได้ทุกคอร์ส ไม่ล็อกระดับชั้น แต่แนะนำให้ปูพื้นตามลำดับจะตามง่ายกว่า</div></div>
+<div style="padding:18px 0;border-bottom:1px solid #E3EEF1"><div style="font-size:17px;font-weight:600;margin-bottom:6px">คอร์สที่ยังไม่เปิดสมัครล่วงหน้าได้ไหม</div><div style="font-size:15px;color:#5A7A82;line-height:1.7">ได้ จ่ายราคาพรีออเดอร์ แล้วระบบจะปลดล็อกให้อัตโนมัติวันเปิดคอร์ส</div></div>
+<div style="padding:18px 0"><div style="font-size:17px;font-weight:600;margin-bottom:6px">คอร์สหมดอายุเมื่อไหร่</div><div style="font-size:15px;color:#5A7A82;line-height:1.7">ไม่หมดอายุ ทุกคอร์สของ Spine Peak ดูได้ตลอดชีพ</div></div>
+</div>
+</div>
+<div style="border:1px solid #E3EEF1;border-radius:20px;padding:28px;background:#FBFEFF">
+<h2 style="font-family:'Anuphan',sans-serif;font-size:clamp(22px,3.2vw,26px);font-weight:700;margin:0 0 10px">ยังเลือกไม่ถูก ทักมาได้เลย</h2>
+<p style="font-size:15.5px;line-height:1.75;color:#4A6C75;margin:0 0 20px">ตอบกลับภายในวันทำการ จันทร์–เสาร์ 10:00–19:00 น.</p>
+<div style="display:flex;flex-direction:column;gap:10px">
+<a href="#" style="text-decoration:none;text-align:center;background:#85E5FF;color:#0B2B33;font-size:16px;font-weight:600;padding:14px;border-radius:999px">ทักทาง LINE</a>
+<a href="#" style="text-decoration:none;text-align:center;border:1.5px solid #D6E8ED;color:#0B2B33;font-size:16px;font-weight:600;padding:13px;border-radius:999px">ส่งข้อความทาง Instagram</a>
+<a href="mailto:hello@spinepeak.com" style="text-decoration:none;text-align:center;color:#3E7784;font-size:15px;padding:6px">hello@spinepeak.com</a>
+</div>
+</div>
+</div>
+
+<div style="border-top:1px solid #E8F1F4;background:#FBFEFF">
+<div style="padding:48px max(clamp(18px,5vw,56px),calc((100% - 1180px) / 2)) 36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:40px">
+<div>
+<img src="uploads/SpinePeakLogo.PNG" alt="Spine Peak" style="height:46px;width:auto;display:block;margin-bottom:14px">
+<p style="margin:0 0 16px;font-size:15px;line-height:1.7;color:#5A7A82;max-width:260px">คอร์สชีววิทยาออนไลน์โดยครูหนาม ตั้งแต่ประถมถึงมัธยมปลายและสนามสอบแข่งขัน ซื้อครั้งเดียวดูได้ตลอดชีพ</p>
+<div style="font-size:14.5px;color:#5A7A82">จันทร์–เสาร์ 10:00–19:00 น.</div>
+</div>
+<div>
+<div style="font-family:'Anuphan',sans-serif;font-size:16px;font-weight:600;margin-bottom:14px">คอร์สเรียน</div>
+<div style="display:flex;flex-direction:column;gap:10px;font-size:14.5px">
+<a href="Spine Peak Courses.dc.html" style="text-decoration:none;color:#5A7A82">ประถม</a>
+<a href="Spine Peak Courses.dc.html" style="text-decoration:none;color:#5A7A82">มัธยมต้น</a>
+<a href="Spine Peak Courses.dc.html" style="text-decoration:none;color:#5A7A82">มัธยมปลาย</a>
+<a href="Spine Peak Courses.dc.html" style="text-decoration:none;color:#5A7A82">SET คอร์ส</a>
+</div>
+</div>
+<div>
+<div style="font-family:'Anuphan',sans-serif;font-size:16px;font-weight:600;margin-bottom:14px">ช่วยเหลือ</div>
+<div style="display:flex;flex-direction:column;gap:10px;font-size:14.5px">
+<a href="#faq" style="text-decoration:none;color:#5A7A82">วิธีสมัครเรียน</a>
+<a href="#faq" style="text-decoration:none;color:#5A7A82">วิธีชำระเงิน</a>
+<a href="#faq" style="text-decoration:none;color:#5A7A82">คำถามที่พบบ่อย</a>
+<a href="#" style="text-decoration:none;color:#5A7A82">เงื่อนไขการใช้งาน</a>
+<a href="#" style="text-decoration:none;color:#5A7A82">นโยบายความเป็นส่วนตัว</a>
+</div>
+</div>
+<div>
+<div style="font-family:'Anuphan',sans-serif;font-size:16px;font-weight:600;margin-bottom:14px">ติดต่อเรา</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<a href="#" style="text-decoration:none;color:#0B2B33;display:flex;align-items:center;gap:10px;font-size:14.5px"><span style="width:34px;height:34px;border-radius:50%;background:#85E5FF;display:flex;align-items:center;justify-content:center;font:600 12px 'IBM Plex Mono',monospace">IG</span>@spinepeak</a>
+<a href="#" style="text-decoration:none;color:#0B2B33;display:flex;align-items:center;gap:10px;font-size:14.5px"><span style="width:34px;height:34px;border-radius:50%;background:#85E5FF;display:flex;align-items:center;justify-content:center;font:600 12px 'IBM Plex Mono',monospace">FB</span>Spine Peak</a>
+<a href="#" style="text-decoration:none;color:#0B2B33;display:flex;align-items:center;gap:10px;font-size:14.5px"><span style="width:34px;height:34px;border-radius:50%;background:#85E5FF;display:flex;align-items:center;justify-content:center;font:600 12px 'IBM Plex Mono',monospace">TT</span>@spinepeak</a>
+<a href="mailto:hello@spinepeak.com" style="text-decoration:none;color:#0B2B33;display:flex;align-items:center;gap:10px;font-size:14.5px"><span style="width:34px;height:34px;border-radius:50%;background:#85E5FF;display:flex;align-items:center;justify-content:center;font:600 12px 'IBM Plex Mono',monospace">@</span>hello@spinepeak.com</a>
+</div>
+</div>
+</div>
+<div style="padding:18px max(clamp(18px,5vw,56px),calc((100% - 1180px) / 2)) 30px;border-top:1px solid #EDF5F7;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:center;font-size:13.5px;color:#5A7A82">
+<div>© 2026 Spine Peak. สงวนลิขสิทธิ์</div>
+<div>ชำระเงินผ่านโอนธนาคาร · พร้อมเพย์ · บัตรเครดิต</div>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">class Component extends DCLogic {
+  state = { grade: 'มัธยมปลาย', q: '', topic: 'ทุกหัวข้อ', count: 9 };
+
+  topicsByGrade = {
+    'ประถม': ['สอบเข้าม.1', 'O-NET'],
+    'มัธยมต้น': ['ปรับพื้นฐาน', 'IJSO', 'สวช.', 'O-NET', 'สอบเข้า ม.4'],
+    'มัธยมปลาย': ['ปรับพื้นฐาน', 'A-Level', 'NETSAT', 'สอวน.', 'สวช.', 'Biocontest', 'ครูผู้ช่วย']
+  };
+
+  tracks = [
+    ['Biocontest'], ['Biocontest'], ['ปรับพื้นฐาน','A-Level'], ['ปรับพื้นฐาน','A-Level'], ['A-Level'],
+    ['A-Level','NETSAT'], ['A-Level','NETSAT'], ['ปรับพื้นฐาน','A-Level'], ['A-Level'], ['A-Level','สวช.'],
+    ['สอวน.'], ['ปรับพื้นฐาน'], ['A-Level','ครูผู้ช่วย'], ['สอวน.','สวช.'],
+    ['ปรับพื้นฐาน'], ['ปรับพื้นฐาน','O-NET'], ['O-NET','สอบเข้า ม.4'], ['สอบเข้า ม.4'], ['ปรับพื้นฐาน'],
+    ['ปรับพื้นฐาน','O-NET'], ['O-NET','IJSO'], ['IJSO','สวช.'], ['O-NET','สอบเข้า ม.4'],
+    ['O-NET'], ['O-NET'], ['O-NET','สอบเข้าม.1'], ['สอบเข้าม.1'], ['O-NET'], ['O-NET'], ['สอบเข้าม.1']
+  ];
+
+  data() {
+    const P = 'ประถม', M = 'มัธยมต้น', H = 'มัธยมปลาย';
+    const raw = [
+      [H,'Biocontest ม.เกษตรศาสตร์','เฉลยข้อสอบแข่งขัน 100 ข้อ ทีละข้อพร้อมวิธีคิด',['สอบแข่งขัน','สรีรวิทยา'],1,10,4,599,890,'เปิดแล้ว'],
+      [H,'Biocontest Otter','ชุดข้อสอบแข่งขันอีกแนว เจาะโจทย์คนละกลุ่ม',['สอบแข่งขัน','นิเวศวิทยา'],1,10,4,599,890,'เปิดแล้ว'],
+      [H,'พันธุศาสตร์ ม.4 เข้มข้น','กฎเมนเดล ถึงพันธุวิศวกรรม ครบทุกโจทย์',['พันธุศาสตร์'],0,12,6,790,990,'เปิดแล้ว'],
+      [H,'เซลล์และการแบ่งเซลล์','ไมโทซิส–ไมโอซิส เข้าใจภาพรวมก่อนท่องจำ',['เซลล์'],0,8,5,690,0,'เปิดแล้ว'],
+      [H,'ระบบร่างกายมนุษย์ ม.5','8 ระบบหลัก สอนจากโจทย์ A-Level',['สรีรวิทยา'],0,14,8,890,1190,'1 ต.ค. 69'],
+      [H,'A-Level ชีววิทยา ตะลุยโจทย์',' เฉลยข้อสอบย้อนหลัง 5 ปี',['สอบแข่งขัน','ทบทวนรวม'],1,16,9,990,1290,'เปิดแล้ว'],
+      [H,'TCAS ชีวะ สรุปก่อนสอบ 30 วัน','ปิดเล่มทั้งบท ม.4–ม.6 แบบกระชับ',['ทบทวนรวม'],1,9,6,690,890,'15 ต.ค. 69'],
+      [H,'นิเวศวิทยาและสิ่งแวดล้อม','ระบบนิเวศ พลังงาน และความหลากหลาย',['นิเวศวิทยา'],0,7,4,590,0,'เปิดแล้ว'],
+      [H,'พฤกษศาสตร์ ม.5','โครงสร้างพืช การลำเลียง และการสังเคราะห์แสง',['พฤกษศาสตร์'],0,9,5,690,890,'เปิดแล้ว'],
+      [H,'วิวัฒนาการและความหลากหลาย','ทฤษฎีวิวัฒนาการ พร้อมโจทย์ประยุกต์',['วิวัฒนาการ'],0,6,3,490,0,'เปิดแล้ว'],
+      [H,'สอวน. ชีววิทยา ค่าย 1','ปูพื้นเนื้อหาระดับโอลิมปิกวิชาการ',['สอบแข่งขัน'],1,18,10,1290,1590,'1 พ.ย. 69'],
+      [H,'ชีวเคมีพื้นฐานสำหรับ ม.ปลาย','สารชีวโมเลกุลและเอนไซม์',['เซลล์'],0,5,3,450,0,'เปิดแล้ว'],
+      [H,'ปฏิบัติการชีววิทยา ม.6','อ่านผลการทดลองและตอบข้อสอบเชิงวิเคราะห์',['ทบทวนรวม'],0,6,4,590,790,'เปิดแล้ว'],
+      [H,'พันธุศาสตร์ประชากร','Hardy–Weinberg ถึงโจทย์แข่งขัน',['พันธุศาสตร์','สอบแข่งขัน'],1,5,3,520,0,'เปิดแล้ว'],
+      [M,'ชีววิทยา ม.1 ปูพื้น','เซลล์ สิ่งมีชีวิต และระบบง่าย ๆ',['เซลล์'],0,8,6,490,690,'เปิดแล้ว'],
+      [M,'ชีววิทยา ม.2 ระบบร่างกาย','ย่อยอาหาร หายใจ หมุนเวียนเลือด',['สรีรวิทยา'],0,9,6,490,690,'เปิดแล้ว'],
+      [M,'ชีววิทยา ม.3 ครบเล่ม','พันธุกรรม ระบบนิเวศ และการสืบพันธุ์',['พันธุศาสตร์','นิเวศวิทยา'],0,10,7,590,790,'เปิดแล้ว'],
+      [M,'เตรียมสอบเข้า ม.4 ห้องวิทย์','ตะลุยโจทย์วิทย์ชีวะสอบเข้าโรงเรียนดัง',['สอบแข่งขัน','ทบทวนรวม'],1,12,8,790,990,'1 ต.ค. 69'],
+      [M,'พืชและสัตว์รอบตัว ม.ต้น','จำแนกสิ่งมีชีวิตแบบเห็นภาพ',['พฤกษศาสตร์'],0,5,4,390,0,'เปิดแล้ว'],
+      [M,'ระบบนิเวศ ม.ต้น','ห่วงโซ่อาหารและสมดุลธรรมชาติ',['นิเวศวิทยา'],0,4,3,350,0,'เปิดแล้ว'],
+      [M,'พันธุกรรมเบื้องต้น ม.3','ยีน โครโมโซม และการถ่ายทอดลักษณะ',['พันธุศาสตร์'],0,5,4,420,590,'เปิดแล้ว'],
+      [M,'TEDET / วิทย์แข่งขัน ม.ต้น','โจทย์แข่งขันวิทยาศาสตร์ชีวภาพ',['สอบแข่งขัน'],1,8,5,690,890,'15 ต.ค. 69'],
+      [M,'สรุปชีวะ ม.ต้น ก่อนสอบปลายภาค','ทบทวนรวบยอดทั้ง 3 ชั้นปี',['ทบทวนรวม'],0,6,5,450,0,'เปิดแล้ว'],
+      [P,'วิทย์ชีวภาพ ป.4','สิ่งมีชีวิตรอบตัวและการดำรงชีวิต',['เซลล์'],0,4,4,290,0,'เปิดแล้ว'],
+      [P,'วิทย์ชีวภาพ ป.5','ร่างกายของเราและการเจริญเติบโต',['สรีรวิทยา'],0,4,4,290,0,'เปิดแล้ว'],
+      [P,'วิทย์ชีวภาพ ป.6','ระบบนิเวศและการถ่ายทอดพลังงาน',['นิเวศวิทยา'],0,5,5,320,450,'เปิดแล้ว'],
+      [P,'เตรียมสอบเข้า ม.1 วิทย์ชีวะ','ตะลุยโจทย์สอบเข้าห้องเรียนพิเศษ',['สอบแข่งขัน','ทบทวนรวม'],1,7,6,590,790,'1 ต.ค. 69'],
+      [P,'พืชน่ารู้สำหรับเด็กประถม','เรียนพฤกษศาสตร์แบบสนุก มีใบงานให้',['พฤกษศาสตร์'],0,3,3,250,0,'เปิดแล้ว'],
+      [P,'ร่างกายมนุษย์ฉบับเด็ก','อวัยวะและหน้าที่ เข้าใจง่ายด้วยภาพ',['สรีรวิทยา'],0,4,4,290,0,'เปิดแล้ว'],
+      [P,'สัตว์และการจำแนก ป.5–ป.6','กลุ่มสัตว์ต่าง ๆ และลักษณะเด่น',['นิเวศวิทยา'],0,3,3,250,390,'เปิดแล้ว']
+    ];
+    return raw.map((r, i) => ({
+      id: 'c' + i, grade: r[0], title: r[1], desc: r[2], topics: r[3], exam: !!r[4],
+      tracks: this.tracks[i] || [],
+      hours: r[5], chapters: r[6], price: r[7], old: r[8], start: r[9],
+      priceText: r[7].toLocaleString() + '.-',
+      oldText: r[8] ? r[8].toLocaleString() + '.-' : '',
+      hasOld: !!r[8],
+      meta: 'VDO ' + r[5] + ' ชม. · ' + r[6] + ' บท',
+      startText: r[9] === 'เปิดแล้ว' ? 'เรียนได้ทันที' : 'เริ่ม ' + r[9],
+      tagText: r[3].join(' · ')
+    }));
+  }
+
+  set(k, v) {
+    const patch = { [k]: v, count: 9 };
+    if (k === 'grade') patch.topic = 'ทุกหัวข้อ';
+    this.setState(patch);
+  }
+
+  componentDidMount() {
+    this._io = new IntersectionObserver(es => {
+      if (es[0].isIntersecting) this.setState(s => ({ count: s.count + 6 }));
+    }, { rootMargin: '200px' });
+    if (this._sentinel) this._io.observe(this._sentinel);
+  }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); }
+
+  renderVals() {
+    const s = this.state;
+    const all = this.data();
+    const q = s.q.trim().toLowerCase();
+    const filtered = all.filter(c => {
+      if (s.grade !== 'ทุกระดับชั้น' && c.grade !== s.grade) return false;
+      if (s.topic !== 'ทุกหัวข้อ' && !c.tracks.includes(s.topic)) return false;
+      if (q && !(c.title + ' ' + c.desc + ' ' + c.tagText + ' ' + c.tracks.join(' ')).toLowerCase().includes(q)) return false;
+      return true;
+    });
+    const shown = filtered.slice(0, s.count);
+    const tabBase = 'text-decoration:none;cursor:pointer;font-family:Anuphan,sans-serif;font-size:17px;font-weight:600;padding:12px 26px;border-radius:999px;border:1.5px solid ';
+    const tabs = ['ทุกระดับชั้น', 'ประถม', 'มัธยมต้น', 'มัธยมปลาย'].map(t => {
+      const n = t === 'ทุกระดับชั้น' ? all.length : all.filter(c => c.grade === t).length;
+      const on = s.grade === t;
+      return {
+        key: t, label: t, countText: n + ' คอร์ส',
+        style: tabBase + (on ? '#0B2B33;background:#0B2B33;color:#fff' : '#D6E8ED;background:#fff;color:#0B2B33'),
+        onClick: () => this.set('grade', t)
+      };
+    });
+    const byGrade = this.topicsByGrade[s.grade];
+    const union = ['ปรับพื้นฐาน','สอบเข้าม.1','O-NET','IJSO','สอบเข้า ม.4','A-Level','NETSAT','สอวน.','สวช.','Biocontest','ครูผู้ช่วย'];
+    const topicOptions = ['ทุกหัวข้อ'].concat(byGrade || union);
+    const selStyle = 'flex:1 1 200px;min-width:0;font-family:inherit;font-size:15px;color:#0B2B33;background:#fff;border:1px solid #D6E8ED;border-radius:999px;padding:11px 16px;cursor:pointer';
+    return {
+      tabs, courses: shown,
+      resultText: 'พบ ' + filtered.length + ' คอร์ส',
+      hasMore: shown.length < filtered.length,
+      isEmpty: filtered.length === 0,
+      q: s.q, topic: s.topic, topicOptions,
+      selStyle,
+      onSearch: e => this.set('q', e.target.value),
+      onTopic: e => this.set('topic', e.target.value),
+      onReset: () => this.setState({ grade: 'ทุกระดับชั้น', q: '', topic: 'ทุกหัวข้อ', count: 9 }),
+      sentinelRef: el => { this._sentinel = el; if (el && this._io) this._io.observe(el); }
+    };
+  }
+}</script>
+</body>
+</html>

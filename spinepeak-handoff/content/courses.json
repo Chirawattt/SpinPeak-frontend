@@ -1,0 +1,1734 @@
+[
+  {
+    "slug": "primary-science-p4",
+    "title": "เนื้อหาประถม ป.4",
+    "tagline": "ปูพื้นวิทย์ ป.4 ครบทุกบท เรียนเข้าใจง่าย เพิ่มเกรดในห้อง",
+    "group": "prathom",
+    "category": "ประถม",
+    "tracks": [
+      "ประถม"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "pdfPages": 85,
+      "videoHours": 5
+    },
+    "chapters": [
+      {
+        "title": "ความรู้เบื้องต้นในทางวิทยาศาสตร์"
+      },
+      {
+        "title": "การเรียนรู้สิ่งต่าง ๆ รอบตัว"
+      },
+      {
+        "title": "สิ่งมีชีวิต"
+      },
+      {
+        "title": "แรงและพลังงาน"
+      },
+      {
+        "title": "วัสดุและสสาร"
+      },
+      {
+        "title": "โลกและอวกาศ"
+      }
+    ],
+    "forWho": [
+      "นักเรียนประถมปลาย",
+      "เรียนเสริม/เพิ่มเกรด",
+      "เตรียมสอบกลางภาค/ปลายภาค",
+      "เตรียมสอบเข้า ม.1"
+    ],
+    "contentPoints": [],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "PR-01",
+      "PR-05",
+      "PR-06",
+      "PR-07",
+      "PR-08"
+    ]
+  },
+  {
+    "slug": "primary-science-p5",
+    "title": "เนื้อหาประถม ป.5",
+    "tagline": "สรุปวิทย์ ป.5 ครบทุกบท เตรียมสอบกลางภาค-ปลายภาค",
+    "group": "prathom",
+    "category": "ประถม",
+    "tracks": [
+      "ประถม"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "pdfPages": 94,
+      "videoHours": 5
+    },
+    "chapters": [
+      {
+        "title": "การเรียนรู้สิ่งต่าง ๆ รอบตัว"
+      },
+      {
+        "title": "แรงและพลังงาน"
+      },
+      {
+        "title": "การเปลี่ยนแปลงของสาร"
+      },
+      {
+        "title": "วัฏจักร"
+      },
+      {
+        "title": "สิ่งมีชีวิต"
+      }
+    ],
+    "forWho": [
+      "นักเรียนประถมปลาย",
+      "เรียนเสริม/เพิ่มเกรด",
+      "เตรียมสอบกลางภาค/ปลายภาค",
+      "เตรียมสอบเข้า ม.1"
+    ],
+    "contentPoints": [],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "PR-02",
+      "PR-05",
+      "PR-06",
+      "PR-07",
+      "PR-08"
+    ]
+  },
+  {
+    "slug": "primary-science-p6",
+    "title": "เนื้อหาประถม ป.6",
+    "tagline": "วิทย์ ป.6 ครบทุกบท ปูพื้นให้แน่นก่อนสอบเข้า ม.1",
+    "group": "prathom",
+    "category": "ประถม",
+    "tracks": [
+      "ประถม"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "pdfPages": 90,
+      "videoHours": 5
+    },
+    "chapters": [
+      {
+        "title": "อาหารและการย่อยอาหาร"
+      },
+      {
+        "title": "การแยกสารเนื้อผสม"
+      },
+      {
+        "title": "หินและซากดึกดำบรรพ์"
+      },
+      {
+        "title": "ปรากฏการณ์ของโลกและภัยธรรมชาติ"
+      },
+      {
+        "title": "เงา อุปราคา และเทคโนโลยีอวกาศ"
+      },
+      {
+        "title": "แรงไฟฟ้าและพลังงานไฟฟ้า"
+      }
+    ],
+    "forWho": [
+      "นักเรียนประถมปลาย",
+      "เรียนเสริม/เพิ่มเกรด",
+      "เตรียมสอบกลางภาค/ปลายภาค",
+      "เตรียมสอบเข้า ม.1"
+    ],
+    "contentPoints": [],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "PR-03",
+      "PR-05",
+      "PR-06",
+      "PR-07",
+      "PR-08"
+    ]
+  },
+  {
+    "slug": "primary-exercise-p4",
+    "title": "ข้อสอบประถม ป.4",
+    "tagline": "ตะลุยโจทย์วิทย์ ป.4 100 ข้อ พร้อมเฉลยละเอียด",
+    "group": "prathom",
+    "category": "ประถม",
+    "tracks": [
+      "ประถม"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 299,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 100,
+      "pdfPages": 27,
+      "videoHours": 3
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียนประถมปลาย",
+      "เตรียมสอบกลางภาค/ปลายภาค",
+      "เตรียมสอบเข้า ม.1"
+    ],
+    "contentPoints": [
+      "ตะลุยโจทย์",
+      "เฉลยแบบละเอียด"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "PR-01",
+      "PR-04",
+      "PR-06",
+      "PR-07",
+      "PR-08",
+      "PR-09",
+      "PR-10"
+    ]
+  },
+  {
+    "slug": "primary-exercise-p5",
+    "title": "ข้อสอบประถม ป.5",
+    "tagline": "ตะลุยโจทย์วิทย์ ป.5 165 ข้อ พร้อมเฉลยละเอียด",
+    "group": "prathom",
+    "category": "ประถม",
+    "tracks": [
+      "ประถม"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 299,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 165,
+      "pdfPages": 40,
+      "videoHours": 3
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียนประถมปลาย",
+      "เตรียมสอบกลางภาค/ปลายภาค",
+      "เตรียมสอบเข้า ม.1"
+    ],
+    "contentPoints": [
+      "ตะลุยโจทย์",
+      "เฉลยแบบละเอียด"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "PR-02",
+      "PR-04",
+      "PR-06",
+      "PR-07",
+      "PR-08",
+      "PR-09",
+      "PR-10"
+    ]
+  },
+  {
+    "slug": "primary-exercise-p6",
+    "title": "ข้อสอบประถม ป.6",
+    "tagline": "ตะลุยโจทย์วิทย์ ป.6 120 ข้อ พร้อมเฉลยละเอียด",
+    "group": "prathom",
+    "category": "ประถม",
+    "tracks": [
+      "ประถม"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 299,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 120,
+      "pdfPages": 31,
+      "videoHours": 3
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียนประถมปลาย",
+      "เตรียมสอบกลางภาค/ปลายภาค",
+      "เตรียมสอบเข้า ม.1"
+    ],
+    "contentPoints": [
+      "ตะลุยโจทย์",
+      "เฉลยแบบละเอียด"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "PR-03",
+      "PR-04",
+      "PR-06",
+      "PR-07",
+      "PR-08",
+      "PR-09",
+      "PR-10"
+    ]
+  },
+  {
+    "slug": "m1-entrance-science-special",
+    "title": "ตะลุยโจทย์สอบเข้า ม.1 (ห้องพิเศษ)",
+    "tagline": "ข้อสอบ 4 ชุด 120 ข้อ แนว จภ. สวนกุหลาบ หอวัง สาธิต",
+    "group": "prathom",
+    "category": "สอบเข้า ม.1",
+    "tracks": [
+      "สอบเข้า ม.1"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 120,
+      "pdfPages": 126,
+      "videoHours": 10
+    },
+    "chapters": [],
+    "forWho": [
+      "ประถมปลาย ใช้สอบเข้า ม.1 (จภ. สวนกุหลาบ หอวัง สาธิต และโรงเรียนชั้นนำทั่วประเทศ)"
+    ],
+    "contentPoints": [
+      "ข้อสอบ 4 ชุด ชุดละ 30 ข้อ",
+      "สรุปเนื้อหาที่สำคัญท้ายข้อสอบ",
+      "แนวโรงเรียนจุฬาภรณราชวิทยาลัย"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "PR-08",
+      "PR-10"
+    ]
+  },
+  {
+    "slug": "m1-entrance-science-regular",
+    "title": "ตะลุยโจทย์สอบเข้า ม.1 (ห้องธรรมดา)",
+    "tagline": "เฉลย 150 ข้อ พร้อมสรุปเนื้อหา ติวเข้า ม.1 ตรงจุด",
+    "group": "prathom",
+    "category": "สอบเข้า ม.1",
+    "tracks": [
+      "สอบเข้า ม.1"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 399,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 150,
+      "pdfPages": 56,
+      "videoHours": 5
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียนประถมปลาย"
+    ],
+    "contentPoints": [
+      "สรุปเนื้อหาที่สำคัญท้ายข้อสอบ"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "PR-07",
+      "PR-09"
+    ]
+  },
+  {
+    "slug": "triam-udom-m4-biology",
+    "title": "ติวติดเตรียม",
+    "tagline": "สรุปชีวะ + ข้อสอบ สำหรับสอบเข้า ม.4 เตรียมอุดมฯ",
+    "group": "mton",
+    "category": "สอบเข้า ม.4",
+    "tracks": [
+      "สอบเข้า ม.4"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "pdfPages": 80,
+      "videoHours": 10
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียน ม.ต้น"
+    ],
+    "contentPoints": [
+      "สอบเข้า ม.4 ติวติดเตรียมฯ",
+      "สรุปเนื้อหา + ข้อสอบ"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "JH-03",
+      "JH-06"
+    ]
+  },
+  {
+    "slug": "nat-junior-science",
+    "title": "สวช. ม.ต้น",
+    "tagline": "เฉลย 80 ข้อ สอบชิงถ้วยพระราชทาน สายแข่งวิชาการ ม.ต้น",
+    "group": "mton",
+    "category": "แข่งขันวิชาการ",
+    "tracks": [
+      "แข่งขันวิชาการ"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 399,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 80,
+      "pdfPages": 58,
+      "videoHours": 5
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียน ม.ต้น สายแข่งเชิงวิชาการ หรืออยากเก็บผลงานลง Portfolio"
+    ],
+    "contentPoints": [
+      "โครงการ สวช. สอบแข่งขันวัดระดับวิชาการระดับชาติ สอบชิงถ้วยพระราชทาน",
+      "สรุปเนื้อหาที่สำคัญท้ายข้อสอบ"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "JH-02",
+      "JH-03",
+      "JH-04",
+      "JH-05",
+      "JH-06"
+    ]
+  },
+  {
+    "slug": "ijso-biology",
+    "title": "IJSO",
+    "tagline": "เฉลยข้อสอบชีวะ IJSO 60 ข้อ พร้อมสรุปเนื้อหาท้ายเล่ม",
+    "group": "mton",
+    "category": "แข่งขันวิชาการ",
+    "tracks": [
+      "แข่งขันวิชาการ"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 399,
+    "saleMode": "standalone_only",
+    "stats": {
+      "questionCount": 60,
+      "pdfPages": 27,
+      "videoHours": 5
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียน ม.ต้น"
+    ],
+    "contentPoints": [
+      "IJSO (ชีวโอลิมปิก)",
+      "สรุปเนื้อหาท้ายข้อสอบ"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": []
+  },
+  {
+    "slug": "onet-m3-science",
+    "title": "O-NET ม.3",
+    "tagline": "Mock Test O-NET วิทย์ ม.3 เฉลย 88 ข้อ พร้อมสรุปเนื้อหา",
+    "group": "mton",
+    "category": "สอบระดับชาติ",
+    "tracks": [
+      "สอบระดับชาติ"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 399,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 88,
+      "pdfPages": 49,
+      "videoHours": 5
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียน ม.ต้น"
+    ],
+    "contentPoints": [
+      "Mock Test ตะลุยโจทย์",
+      "สรุปเนื้อหาที่สำคัญท้ายข้อสอบ"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "JH-04",
+      "JH-05",
+      "JH-06"
+    ]
+  },
+  {
+    "slug": "m4-entrance-math",
+    "title": "ตะลุยโจทย์สอบเข้า ม.4 คณิตศาสตร์",
+    "tagline": "ตะลุยโจทย์คณิต 50 ข้อ แนว MWIT เตรียมอุดม วมว.",
+    "group": "mton",
+    "category": "สอบเข้า ม.4",
+    "tracks": [
+      "สอบเข้า ม.4"
+    ],
+    "subject": "math",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 399,
+    "saleMode": "standalone_only",
+    "stats": {
+      "questionCount": 50,
+      "pdfPages": 50
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียน ม.ต้น ที่เตรียมสอบเข้า ม.4 (MWIT, เตรียมอุดม (TU), วมว. และโรงเรียนชั้นนำทั่วประเทศ)"
+    ],
+    "contentPoints": [
+      "ข้อสอบ 50 ข้อ เฉลยแบบละเอียด"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": []
+  },
+  {
+    "slug": "m4-entrance-smte-science",
+    "title": "สอบเข้า ม.4 (SMTE)",
+    "tagline": "เฉลย 100 ข้อ พร้อมสรุปเนื้อหา พิชิตห้องพิเศษ SMTE",
+    "group": "mton",
+    "category": "สอบเข้า ม.4",
+    "tracks": [
+      "สอบเข้า ม.4"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 100,
+      "pdfPages": 130,
+      "videoHours": 10
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียน ม.ต้น สอบเข้าห้องพิเศษ SMTE"
+    ],
+    "contentPoints": [
+      "ห้องเรียนวิทยาศาสตร์-คณิตศาสตร์ (SMTE)",
+      "สรุปเนื้อหาที่สำคัญท้ายข้อสอบ"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "JH-02",
+      "JH-05",
+      "JH-06"
+    ]
+  },
+  {
+    "slug": "foundation-science-m1-term-1",
+    "title": "ปรับพื้นฐาน ม.1 เทอม 1",
+    "tagline": "ปูพื้นวิทย์ ม.1 เทอม 1 — สารบริสุทธิ์ • เซลล์ • ชีวิตพืช",
+    "group": "mton",
+    "category": "ปรับพื้นฐาน ม.ต้น (แยกเทอม)",
+    "tracks": [
+      "ปรับพื้นฐาน ม.ต้น (แยกเทอม)"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "pdfPages": {
+        "min": 30,
+        "max": 70
+      },
+      "videoHours": 10
+    },
+    "chapters": [
+      {
+        "title": "สารบริสุทธิ์"
+      },
+      {
+        "title": "หน่วยพื้นฐานของสิ่งมีชีวิต"
+      },
+      {
+        "title": "การดำรงชีวิตของพืช"
+      }
+    ],
+    "forWho": [
+      "นักเรียน ม.ต้น"
+    ],
+    "contentPoints": [
+      "ทั้งชุดครอบคลุม ฟิสิกส์ เคมี ชีวะ ดาราศาสตร์พื้นฐาน"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "JH-01",
+      "JH-02",
+      "JH-03",
+      "JH-04"
+    ]
+  },
+  {
+    "slug": "foundation-science-m1-term-2",
+    "title": "ปรับพื้นฐาน ม.1 เทอม 2",
+    "tagline": "ปูพื้นวิทย์ ม.1 เทอม 2 — พลังงานความร้อน • ลมฟ้าอากาศ",
+    "group": "mton",
+    "category": "ปรับพื้นฐาน ม.ต้น (แยกเทอม)",
+    "tracks": [
+      "ปรับพื้นฐาน ม.ต้น (แยกเทอม)"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "pdfPages": {
+        "min": 30,
+        "max": 70
+      },
+      "videoHours": 10
+    },
+    "chapters": [
+      {
+        "title": "พลังงานความร้อน"
+      },
+      {
+        "title": "กระบวนการเปลี่ยนแปลงลมฟ้าอากาศ"
+      }
+    ],
+    "forWho": [
+      "นักเรียน ม.ต้น"
+    ],
+    "contentPoints": [
+      "ทั้งชุดครอบคลุม ฟิสิกส์ เคมี ชีวะ ดาราศาสตร์พื้นฐาน"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "JH-01",
+      "JH-02",
+      "JH-03",
+      "JH-04"
+    ]
+  },
+  {
+    "slug": "foundation-science-m2-term-1",
+    "title": "ปรับพื้นฐาน ม.2 เทอม 1",
+    "tagline": "ปูพื้นวิทย์ ม.2 เทอม 1 — สารละลาย • ร่างกายมนุษย์ • แรง",
+    "group": "mton",
+    "category": "ปรับพื้นฐาน ม.ต้น (แยกเทอม)",
+    "tracks": [
+      "ปรับพื้นฐาน ม.ต้น (แยกเทอม)"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "pdfPages": {
+        "min": 30,
+        "max": 70
+      },
+      "videoHours": 10
+    },
+    "chapters": [
+      {
+        "title": "สารละลาย"
+      },
+      {
+        "title": "ร่างกายมนุษย์"
+      },
+      {
+        "title": "การเคลื่อนที่และแรง"
+      }
+    ],
+    "forWho": [
+      "นักเรียน ม.ต้น"
+    ],
+    "contentPoints": [
+      "ทั้งชุดครอบคลุม ฟิสิกส์ เคมี ชีวะ ดาราศาสตร์พื้นฐาน"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "JH-01",
+      "JH-02",
+      "JH-03",
+      "JH-04"
+    ]
+  },
+  {
+    "slug": "foundation-science-m2-term-2",
+    "title": "ปรับพื้นฐาน ม.2 เทอม 2",
+    "tagline": "ปูพื้นวิทย์ ม.2 เทอม 2 — พลังงาน • การแยกสาร • โลก",
+    "group": "mton",
+    "category": "ปรับพื้นฐาน ม.ต้น (แยกเทอม)",
+    "tracks": [
+      "ปรับพื้นฐาน ม.ต้น (แยกเทอม)"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "pdfPages": {
+        "min": 30,
+        "max": 70
+      },
+      "videoHours": 10
+    },
+    "chapters": [
+      {
+        "title": "งานและพลังงาน"
+      },
+      {
+        "title": "การแยกสาร"
+      },
+      {
+        "title": "โลกและการเปลี่ยนแปลง"
+      },
+      {
+        "title": "ทรัพยากรพลังงาน"
+      }
+    ],
+    "forWho": [
+      "นักเรียน ม.ต้น"
+    ],
+    "contentPoints": [
+      "ทั้งชุดครอบคลุม ฟิสิกส์ เคมี ชีวะ ดาราศาสตร์พื้นฐาน"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "JH-01",
+      "JH-02",
+      "JH-03",
+      "JH-04"
+    ]
+  },
+  {
+    "slug": "foundation-science-m3-term-1",
+    "title": "ปรับพื้นฐาน ม.3 เทอม 1",
+    "tagline": "ปูพื้นวิทย์ ม.3 เทอม 1 — พันธุกรรม • คลื่น แสง • ระบบสุริยะ",
+    "group": "mton",
+    "category": "ปรับพื้นฐาน ม.ต้น (แยกเทอม)",
+    "tracks": [
+      "ปรับพื้นฐาน ม.ต้น (แยกเทอม)"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "pdfPages": {
+        "min": 30,
+        "max": 70
+      },
+      "videoHours": 10
+    },
+    "chapters": [
+      {
+        "title": "พันธุศาสตร์"
+      },
+      {
+        "title": "คลื่นและแสง"
+      },
+      {
+        "title": "ระบบสุริยะของเรา"
+      }
+    ],
+    "forWho": [
+      "นักเรียน ม.ต้น"
+    ],
+    "contentPoints": [
+      "ทั้งชุดครอบคลุม ฟิสิกส์ เคมี ชีวะ ดาราศาสตร์พื้นฐาน"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "JH-01",
+      "JH-02",
+      "JH-03",
+      "JH-04"
+    ]
+  },
+  {
+    "slug": "foundation-science-m3-term-2",
+    "title": "ปรับพื้นฐาน ม.3 เทอม 2",
+    "tagline": "ปูพื้นวิทย์ ม.3 เทอม 2 — ปฏิกิริยาเคมี • ไฟฟ้า • ระบบนิเวศ",
+    "group": "mton",
+    "category": "ปรับพื้นฐาน ม.ต้น (แยกเทอม)",
+    "tracks": [
+      "ปรับพื้นฐาน ม.ต้น (แยกเทอม)"
+    ],
+    "subject": "science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "pdfPages": {
+        "min": 30,
+        "max": 70
+      },
+      "videoHours": 10
+    },
+    "chapters": [
+      {
+        "title": "ปฏิกิริยาเคมีและวัสดุในชีวิตประจำวัน"
+      },
+      {
+        "title": "ไฟฟ้า"
+      },
+      {
+        "title": "ระบบนิเวศและความหลากหลายทางชีวภาพ"
+      }
+    ],
+    "forWho": [
+      "นักเรียน ม.ต้น"
+    ],
+    "contentPoints": [
+      "ทั้งชุดครอบคลุม ฟิสิกส์ เคมี ชีวะ ดาราศาสตร์พื้นฐาน"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "JH-01",
+      "JH-02",
+      "JH-03",
+      "JH-04"
+    ]
+  },
+  {
+    "slug": "assistant-teacher-biology",
+    "title": "ครูผู้ช่วย เอกชีวะ",
+    "tagline": "ตะลุยโจทย์ 400 ข้อ ติวสอบครูผู้ช่วย เอกชีววิทยา",
+    "group": "mplai",
+    "category": "สอบครูผู้ช่วย",
+    "tracks": [
+      "สอบครูผู้ช่วย"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 400,
+      "pdfPages": 97,
+      "videoHours": 10
+    },
+    "chapters": [],
+    "forWho": [
+      "ผู้ที่ต้องการฝึกทำข้อสอบจริงและติวแนวทางเพื่อนำไปสอบ"
+    ],
+    "contentPoints": [
+      "ติวสอบครูผู้ช่วย เอกชีววิทยา",
+      "ตะลุยโจทย์ 400 ข้อ"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "HS-02"
+    ]
+  },
+  {
+    "slug": "nat-senior-biology",
+    "title": "สวช. ม.ปลาย ชีววิทยา",
+    "tagline": "เฉลย สวช. ชีวะ 40 ข้อ พร้อมเทคนิคทำข้อสอบ",
+    "group": "mplai",
+    "category": "แข่งขันวิชาการ",
+    "tracks": [
+      "แข่งขันวิชาการ"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 399,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 40,
+      "pdfPages": 50
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียน ม.ปลาย สายแข่งเชิงวิชาการ หรืออยากเก็บผลงานลง Portfolio"
+    ],
+    "contentPoints": [
+      "โครงการ สวช. สอบชิงถ้วยพระราชทาน",
+      "สรุปเนื้อหาท้ายข้อสอบทุกข้อแบบละเอียด พร้อมเทคนิคการทำข้อสอบ"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "NAT-01"
+    ]
+  },
+  {
+    "slug": "nat-senior-chemistry",
+    "title": "สวช. ม.ปลาย เคมี",
+    "tagline": "เฉลย สวช. เคมี 40 ข้อ พร้อมเทคนิคทำข้อสอบ",
+    "group": "mplai",
+    "category": "แข่งขันวิชาการ",
+    "tracks": [
+      "แข่งขันวิชาการ"
+    ],
+    "subject": "chemistry",
+    "topics": [],
+    "instructorSlug": "kru-fon",
+    "status": "open",
+    "price": 399,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 40,
+      "pdfPages": 42
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียน ม.ปลาย สายแข่งเชิงวิชาการ หรืออยากเก็บผลงานลง Portfolio"
+    ],
+    "contentPoints": [
+      "โครงการ สวช. สอบชิงถ้วยพระราชทาน",
+      "สรุปเนื้อหาท้ายข้อสอบทุกข้อแบบละเอียด พร้อมเทคนิคการทำข้อสอบ"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "NAT-01"
+    ]
+  },
+  {
+    "slug": "nat-senior-physics",
+    "title": "สวช. ม.ปลาย ฟิสิกส์",
+    "tagline": "เฉลย สวช. ฟิสิกส์ 40 ข้อ พร้อมเทคนิคทำข้อสอบ",
+    "group": "mplai",
+    "category": "แข่งขันวิชาการ",
+    "tracks": [
+      "แข่งขันวิชาการ"
+    ],
+    "subject": "physics",
+    "topics": [],
+    "instructorSlug": "kru-lookmai",
+    "status": "open",
+    "price": 399,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 40,
+      "pdfPages": 43
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียน ม.ปลาย สายแข่งเชิงวิชาการ หรืออยากเก็บผลงานลง Portfolio"
+    ],
+    "contentPoints": [
+      "โครงการ สวช. สอบชิงถ้วยพระราชทาน",
+      "สรุปเนื้อหาท้ายข้อสอบทุกข้อแบบละเอียด พร้อมเทคนิคการทำข้อสอบ"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "NAT-01"
+    ]
+  },
+  {
+    "slug": "foundation-biology-m4-term-1",
+    "title": "ปรับพื้นฐาน ม.4 เทอม 1",
+    "tagline": "ปูพื้นชีวะ ม.4 เทอม 1 — เซลล์ • เคมีของสิ่งมีชีวิต",
+    "group": "mplai",
+    "category": "ปรับพื้นฐาน ม.ปลาย (แยกเทอม)",
+    "tracks": [
+      "ปรับพื้นฐาน ม.ปลาย (แยกเทอม)"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "pdfPages": {
+        "min": 55,
+        "max": 90
+      },
+      "videoHours": 10
+    },
+    "chapters": [
+      {
+        "title": "บทนำการศึกษาชีววิทยา"
+      },
+      {
+        "title": "เซลล์และการทำงานของเซลล์"
+      },
+      {
+        "title": "เคมีพื้นฐานของสิ่งมีชีวิต"
+      }
+    ],
+    "forWho": [
+      "นักเรียนที่ไม่มีพื้นฐาน และใช้สอบเข้ามหาวิทยาลัย"
+    ],
+    "contentPoints": [],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "HS-01",
+      "HS-02",
+      "POSN-02",
+      "AL-02",
+      "NS-02",
+      "BC-02"
+    ]
+  },
+  {
+    "slug": "foundation-biology-m4-term-2",
+    "title": "ปรับพื้นฐาน ม.4 เทอม 2",
+    "tagline": "ปูพื้นชีวะ ม.4 เทอม 2 — พันธุศาสตร์ • DNA • วิวัฒนาการ",
+    "group": "mplai",
+    "category": "ปรับพื้นฐาน ม.ปลาย (แยกเทอม)",
+    "tracks": [
+      "ปรับพื้นฐาน ม.ปลาย (แยกเทอม)"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "pdfPages": {
+        "min": 55,
+        "max": 90
+      },
+      "videoHours": 10
+    },
+    "chapters": [
+      {
+        "title": "ยีนและโครโมโซม"
+      },
+      {
+        "title": "การถ่ายทอดลักษณะพันธุกรรม"
+      },
+      {
+        "title": "เทคโนโลยีทางดีเอ็นเอ"
+      },
+      {
+        "title": "วิวัฒนาการ"
+      }
+    ],
+    "forWho": [
+      "นักเรียนที่ไม่มีพื้นฐาน และใช้สอบเข้ามหาวิทยาลัย"
+    ],
+    "contentPoints": [],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "HS-01",
+      "HS-02",
+      "POSN-02",
+      "AL-02",
+      "NS-02",
+      "BC-02"
+    ]
+  },
+  {
+    "slug": "foundation-biology-m5-term-1",
+    "title": "ปรับพื้นฐาน ม.5 เทอม 1",
+    "tagline": "ปูพื้นชีวะ ม.5 เทอม 1 — พืชดอก • การสังเคราะห์ด้วยแสง",
+    "group": "mplai",
+    "category": "ปรับพื้นฐาน ม.ปลาย (แยกเทอม)",
+    "tracks": [
+      "ปรับพื้นฐาน ม.ปลาย (แยกเทอม)"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "pdfPages": {
+        "min": 55,
+        "max": 90
+      },
+      "videoHours": 10
+    },
+    "chapters": [
+      {
+        "title": "การสืบพันธุ์ของพืชดอก"
+      },
+      {
+        "title": "โครงสร้างและหน้าที่ของพืช"
+      },
+      {
+        "title": "การสังเคราะห์ด้วยแสง"
+      },
+      {
+        "title": "การตอบสนองต่อสิ่งเร้าของพืช"
+      }
+    ],
+    "forWho": [
+      "นักเรียนที่ไม่มีพื้นฐาน และใช้สอบเข้ามหาวิทยาลัย"
+    ],
+    "contentPoints": [],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "HS-01",
+      "HS-02",
+      "POSN-02",
+      "AL-02",
+      "NS-02",
+      "BC-02"
+    ]
+  },
+  {
+    "slug": "foundation-biology-m5-term-2",
+    "title": "ปรับพื้นฐาน ม.5 เทอม 2",
+    "tagline": "ปูพื้นชีวะ ม.5 เทอม 2 — ระบบในร่างกายมนุษย์ 5 ระบบ",
+    "group": "mplai",
+    "category": "ปรับพื้นฐาน ม.ปลาย (แยกเทอม)",
+    "tracks": [
+      "ปรับพื้นฐาน ม.ปลาย (แยกเทอม)"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "pdfPages": {
+        "min": 55,
+        "max": 90
+      },
+      "videoHours": 10
+    },
+    "chapters": [
+      {
+        "title": "ระบบย่อยอาหาร"
+      },
+      {
+        "title": "ระบบหายใจ"
+      },
+      {
+        "title": "ระบบหมุนเวียนเลือด"
+      },
+      {
+        "title": "ระบบขับถ่าย"
+      },
+      {
+        "title": "ระบบภูมิคุ้มกัน"
+      }
+    ],
+    "forWho": [
+      "นักเรียนที่ไม่มีพื้นฐาน และใช้สอบเข้ามหาวิทยาลัย"
+    ],
+    "contentPoints": [],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "HS-01",
+      "HS-02",
+      "POSN-02",
+      "AL-02",
+      "NS-02",
+      "BC-02"
+    ]
+  },
+  {
+    "slug": "foundation-biology-m6-term-1",
+    "title": "ปรับพื้นฐาน ม.6 เทอม 1",
+    "tagline": "ปูพื้นชีวะ ม.6 เทอม 1 — ประสาท • ต่อมไร้ท่อ • พฤติกรรม",
+    "group": "mplai",
+    "category": "ปรับพื้นฐาน ม.ปลาย (แยกเทอม)",
+    "tracks": [
+      "ปรับพื้นฐาน ม.ปลาย (แยกเทอม)"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "pdfPages": {
+        "min": 55,
+        "max": 90
+      },
+      "videoHours": 10
+    },
+    "chapters": [
+      {
+        "title": "ระบบประสาท"
+      },
+      {
+        "title": "ระบบต่อมไร้ท่อ"
+      },
+      {
+        "title": "ระบบสืบพันธุ์"
+      },
+      {
+        "title": "พฤติกรรมของสัตว์"
+      },
+      {
+        "title": "การเคลื่อนที่ของสิ่งมีชีวิต"
+      }
+    ],
+    "forWho": [
+      "นักเรียนที่ไม่มีพื้นฐาน และใช้สอบเข้ามหาวิทยาลัย"
+    ],
+    "contentPoints": [],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "HS-01",
+      "HS-02",
+      "POSN-02",
+      "AL-02",
+      "NS-02",
+      "BC-02"
+    ]
+  },
+  {
+    "slug": "foundation-biology-m6-term-2",
+    "title": "ปรับพื้นฐาน ม.6 เทอม 2",
+    "tagline": "ปูพื้นชีวะ ม.6 เทอม 2 — ความหลากหลาย • ระบบนิเวศ",
+    "group": "mplai",
+    "category": "ปรับพื้นฐาน ม.ปลาย (แยกเทอม)",
+    "tracks": [
+      "ปรับพื้นฐาน ม.ปลาย (แยกเทอม)"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "pdfPages": {
+        "min": 55,
+        "max": 90
+      },
+      "videoHours": 10
+    },
+    "chapters": [
+      {
+        "title": "ความหลากหลายของสิ่งมีชีวิต"
+      },
+      {
+        "title": "ระบบนิเวศ"
+      },
+      {
+        "title": "ประชากรและทรัพยากร"
+      }
+    ],
+    "forWho": [
+      "นักเรียนที่ไม่มีพื้นฐาน และใช้สอบเข้ามหาวิทยาลัย"
+    ],
+    "contentPoints": [],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "HS-01",
+      "HS-02",
+      "POSN-02",
+      "AL-02",
+      "NS-02",
+      "BC-02"
+    ]
+  },
+  {
+    "slug": "posn-biology-61-64",
+    "title": "สอวน. ปี 61/64",
+    "tagline": "เฉลย สอวน. ชีวะ ปี 61/64 รวม 200 ข้อ แบบละเอียด",
+    "group": "mplai",
+    "category": "แข่งขันวิชาการ",
+    "tracks": [
+      "แข่งขันวิชาการ"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 999,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 200,
+      "pdfPages": 107,
+      "videoHours": 15
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียน ม.3 ม.4 และ ม.5"
+    ],
+    "contentPoints": [
+      "สอวน. (ชีวโอลิมปิก) Mock Exam",
+      "เฉลยแบบละเอียด"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "POSN-01",
+      "POSN-02"
+    ]
+  },
+  {
+    "slug": "posn-biology-66",
+    "title": "สอวน. ปี 66",
+    "tagline": "เฉลย สอวน. ชีวะ ปี 66 จำนวน 100 ข้อ แบบละเอียด",
+    "group": "mplai",
+    "category": "แข่งขันวิชาการ",
+    "tracks": [
+      "แข่งขันวิชาการ"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 399,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 100,
+      "pdfPages": 41,
+      "videoHours": 5
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียน ม.3 ม.4 และ ม.5"
+    ],
+    "contentPoints": [
+      "สอวน. (ชีวโอลิมปิก) Mock Exam",
+      "เฉลยแบบละเอียด"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "POSN-01",
+      "POSN-02"
+    ]
+  },
+  {
+    "slug": "posn-biology-67",
+    "title": "สอวน. ปี 67",
+    "tagline": "เฉลย สอวน. ชีวะ ปี 67 จำนวน 100 ข้อ แบบละเอียด",
+    "group": "mplai",
+    "category": "แข่งขันวิชาการ",
+    "tracks": [
+      "แข่งขันวิชาการ"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 100,
+      "pdfPages": 116,
+      "videoHours": 10
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียน ม.3 ม.4 และ ม.5"
+    ],
+    "contentPoints": [
+      "สอวน. (ชีวโอลิมปิก) Mock Exam",
+      "เฉลยแบบละเอียด"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "POSN-01",
+      "POSN-02"
+    ]
+  },
+  {
+    "slug": "posn-biology-68",
+    "title": "สอวน. ปี 68",
+    "tagline": "เฉลย สอวน. ชีวะ ปี 68 จำนวน 100 ข้อ แบบละเอียด",
+    "group": "mplai",
+    "category": "แข่งขันวิชาการ",
+    "tracks": [
+      "แข่งขันวิชาการ"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 100,
+      "pdfPages": 120,
+      "videoHours": 10
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียน ม.3 ม.4 และ ม.5"
+    ],
+    "contentPoints": [
+      "สอวน. (ชีวโอลิมปิก) Mock Exam",
+      "เฉลยแบบละเอียด"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "POSN-01",
+      "POSN-02"
+    ]
+  },
+  {
+    "slug": "a-level-biology-64-66",
+    "title": "A-Level ชีวะ ปี 64-66",
+    "tagline": "เฉลย A-Level ชีวะ ปี 64-66 รวม 150 ข้อ สายแพทย์ เภสัช ทันตะ",
+    "group": "mplai",
+    "category": "สอบเข้ามหาวิทยาลัย",
+    "tracks": [
+      "สอบเข้ามหาวิทยาลัย"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 150,
+      "pdfPages": 113,
+      "videoHours": 10
+    },
+    "chapters": [],
+    "forWho": [
+      "เน้นสอบเข้ามหาวิทยาลัย (แพทย์ เภสัช ทันตะ) สายวิทย์สุขภาพ"
+    ],
+    "contentPoints": [
+      "เฉลยข้อสอบแบบละเอียด"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "AL-01",
+      "AL-02"
+    ]
+  },
+  {
+    "slug": "a-level-biology-67",
+    "title": "A-Level ชีวะ ปี 67",
+    "tagline": "เฉลย A-Level ชีวะ ปี 67 จำนวน 40 ข้อ แบบละเอียด",
+    "group": "mplai",
+    "category": "สอบเข้ามหาวิทยาลัย",
+    "tracks": [
+      "สอบเข้ามหาวิทยาลัย"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 399,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 40,
+      "pdfPages": 53,
+      "videoHours": 5
+    },
+    "chapters": [],
+    "forWho": [
+      "เน้นสอบเข้ามหาวิทยาลัย (แพทย์ เภสัช ทันตะ) สายวิทย์สุขภาพ"
+    ],
+    "contentPoints": [
+      "เฉลยข้อสอบแบบละเอียด"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "AL-01",
+      "AL-02"
+    ]
+  },
+  {
+    "slug": "a-level-biology-68",
+    "title": "A-Level ชีวะ ปี 68",
+    "tagline": "เฉลย A-Level ชีวะ ปี 68 จำนวน 40 ข้อ แบบละเอียด",
+    "group": "mplai",
+    "category": "สอบเข้ามหาวิทยาลัย",
+    "tracks": [
+      "สอบเข้ามหาวิทยาลัย"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 399,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 40,
+      "pdfPages": 57,
+      "videoHours": 5
+    },
+    "chapters": [],
+    "forWho": [
+      "เน้นสอบเข้ามหาวิทยาลัย (แพทย์ เภสัช ทันตะ) สายวิทย์สุขภาพ"
+    ],
+    "contentPoints": [
+      "เฉลยข้อสอบแบบละเอียด"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "AL-01",
+      "AL-02"
+    ]
+  },
+  {
+    "slug": "a-level-applied-science",
+    "title": "A-Level วิทย์ประยุกต์",
+    "tagline": "Mock Test 80 ข้อ พร้อมเฉลย เข้ากลุ่มคณะสายวิทย์",
+    "group": "mplai",
+    "category": "สอบเข้ามหาวิทยาลัย",
+    "tracks": [
+      "สอบเข้ามหาวิทยาลัย"
+    ],
+    "subject": "applied_science",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 399,
+    "saleMode": "standalone_only",
+    "stats": {
+      "questionCount": 80,
+      "pdfPages": 50,
+      "videoHours": 5
+    },
+    "chapters": [],
+    "forWho": [
+      "เน้นสอบเข้ามหาวิทยาลัย เหมาะกับใช้เข้ากลุ่มคณะสายวิทย์"
+    ],
+    "contentPoints": [
+      "Mock Test ตะลุยโจทย์",
+      "เฉลยแบบละเอียด"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": []
+  },
+  {
+    "slug": "netsat-biology-65",
+    "title": "NETSAT ปี 65",
+    "tagline": "ข้อสอบจริง NETSAT ชีวะ ปี 65 เฉลย 50 ข้อ พิชิตโควต้า มข.",
+    "group": "mplai",
+    "category": "สอบเข้ามหาวิทยาลัย",
+    "tracks": [
+      "สอบเข้ามหาวิทยาลัย"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 399,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 50,
+      "videoHours": 5
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียนที่จะสอบโควต้า มข. (มหาวิทยาลัยขอนแก่น)"
+    ],
+    "contentPoints": [
+      "NETSAT ความฉลาดรู้เฉพาะด้านชีววิทยา",
+      "ข้อสอบจริง ปี 65",
+      "เฉลยแบบละเอียด + สรุปเนื้อหาท้ายข้อสอบ"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "NS-01",
+      "NS-02"
+    ]
+  },
+  {
+    "slug": "netsat-biology-66",
+    "title": "NETSAT ปี 66",
+    "tagline": "ข้อสอบจริง NETSAT ชีวะ ปี 66 เฉลย 50 ข้อ พิชิตโควต้า มข.",
+    "group": "mplai",
+    "category": "สอบเข้ามหาวิทยาลัย",
+    "tracks": [
+      "สอบเข้ามหาวิทยาลัย"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 399,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 50
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียนที่จะสอบโควต้า มข. (มหาวิทยาลัยขอนแก่น)"
+    ],
+    "contentPoints": [
+      "NETSAT ความฉลาดรู้เฉพาะด้านชีววิทยา",
+      "ข้อสอบจริง ปี 66",
+      "เฉลยแบบละเอียด + สรุปเนื้อหาท้ายข้อสอบ"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "NS-01",
+      "NS-02"
+    ]
+  },
+  {
+    "slug": "netsat-biology-67",
+    "title": "NETSAT ปี 67",
+    "tagline": "ข้อสอบจริง NETSAT ชีวะ ปี 67 เฉลย 50 ข้อ พิชิตโควต้า มข.",
+    "group": "mplai",
+    "category": "สอบเข้ามหาวิทยาลัย",
+    "tracks": [
+      "สอบเข้ามหาวิทยาลัย"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 399,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 50
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียนที่จะสอบโควต้า มข. (มหาวิทยาลัยขอนแก่น)"
+    ],
+    "contentPoints": [
+      "NETSAT ความฉลาดรู้เฉพาะด้านชีววิทยา",
+      "ข้อสอบจริง ปี 67",
+      "เฉลยแบบละเอียด + สรุปเนื้อหาท้ายข้อสอบ"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "NS-01",
+      "NS-02"
+    ]
+  },
+  {
+    "slug": "netsat-biology-68",
+    "title": "NETSAT ปี 68",
+    "tagline": "ข้อสอบจริง NETSAT ชีวะ ปี 68 เฉลย 50 ข้อ พิชิตโควต้า มข.",
+    "group": "mplai",
+    "category": "สอบเข้ามหาวิทยาลัย",
+    "tracks": [
+      "สอบเข้ามหาวิทยาลัย"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 399,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 50,
+      "videoHours": 3
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียนที่จะสอบโควต้า มข. (มหาวิทยาลัยขอนแก่น)"
+    ],
+    "contentPoints": [
+      "NETSAT ความฉลาดรู้เฉพาะด้านชีววิทยา",
+      "ข้อสอบจริง ปี 68",
+      "เฉลยแบบละเอียด + สรุปเนื้อหาท้ายข้อสอบ"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "NS-01",
+      "NS-02"
+    ]
+  },
+  {
+    "slug": "biocontest",
+    "title": "BIOCONTEST",
+    "tagline": "เฉลย 100 ข้อ สนามแข่งชีวะ ม.เกษตรศาสตร์",
+    "group": "mplai",
+    "category": "แข่งขันวิชาการ",
+    "tracks": [
+      "แข่งขันวิชาการ"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 100,
+      "pdfPages": 86,
+      "videoHours": 10
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียน ม.3 ถึง ม.6 สายแข่งวิชาการ (ชีวะ) หรืออยากเก็บผลงานลง Portfolio"
+    ],
+    "contentPoints": [
+      "โครงการสอบแข่งขันชีวะ ม.เกษตรศาสตร์",
+      "เฉลยแบบละเอียด"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "BC-01",
+      "BC-02"
+    ]
+  },
+  {
+    "slug": "biocontest-otter",
+    "title": "BIOCONTEST Otter",
+    "tagline": "เฉลย Biocontest Otter 120 ข้อ สนามแข่งชีวะ ม.เกษตรฯ",
+    "group": "mplai",
+    "category": "แข่งขันวิชาการ",
+    "tracks": [
+      "แข่งขันวิชาการ"
+    ],
+    "subject": "biology",
+    "topics": [],
+    "instructorSlug": "kru-nam",
+    "status": "open",
+    "price": 599,
+    "saleMode": "standalone_and_set",
+    "stats": {
+      "questionCount": 120,
+      "pdfPages": 167,
+      "videoHours": 11
+    },
+    "chapters": [],
+    "forWho": [
+      "นักเรียน ม.3 ถึง ม.6 สายแข่งวิชาการ (ชีวะ) หรืออยากเก็บผลงานลง Portfolio"
+    ],
+    "contentPoints": [
+      "โครงการสอบแข่งขันชีวะ ม.เกษตรศาสตร์",
+      "เฉลยแบบละเอียด"
+    ],
+    "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
+    "setCodes": [
+      "BC-01",
+      "BC-02"
+    ]
+  }
+]
