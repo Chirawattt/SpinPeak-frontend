@@ -7,6 +7,7 @@ import type { Clip, Course, CourseSet, Review, Site } from '@content/types'
 import { createCatalog } from './catalog'
 
 export type { Catalog, Content, Footer, HeroStat, Landing, SocialLink } from './catalog'
+export type { ContentProblem } from './validate-content'
 
 // type ที่ TypeScript อนุมานจาก JSON กว้างกว่า type จริง (เช่น group เป็น string ไม่ใช่ Group)
 // จึงต้อง cast ผ่าน unknown รูปร่างของข้อมูลถูกคุมโดย sheet_sync.py

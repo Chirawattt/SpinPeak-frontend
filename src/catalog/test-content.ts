@@ -1,8 +1,46 @@
 // ข้อมูลตัวอย่างเล็ก ๆ สำหรับ test ของ Catalog
 // test ใช้ข้อมูลนี้แทน content/ จริง เพื่อคุมกรณีขอบได้และไม่พังเมื่อชีตเปลี่ยน
 
-import type { Site } from '@content/types'
+import type { Course, CourseSet, Site } from '@content/types'
 import type { Content } from './catalog'
+
+export function testCourse(overrides: Partial<Course> = {}): Course {
+  return {
+    slug: 'primary-science-p4',
+    title: 'เนื้อหาประถม ป.4',
+    tagline: 'ปูพื้นวิทย์ ป.4',
+    group: 'prathom',
+    category: 'ประถม',
+    tracks: ['ประถม'],
+    subject: 'science',
+    topics: [],
+    instructorSlug: 'kru-nam',
+    status: 'open',
+    price: 599,
+    saleMode: 'standalone_and_set',
+    stats: {},
+    chapters: [],
+    forWho: [],
+    contentPoints: [],
+    deliverables: '',
+    setCodes: [],
+    ...overrides,
+  }
+}
+
+export function testSet(overrides: Partial<CourseSet> = {}): CourseSet {
+  return {
+    code: 'PR-01',
+    slug: 'primary-p4-bundle',
+    title: 'วิทยาศาสตร์ ป.4',
+    tagline: 'ครบในเซ็ตเดียว',
+    group: 'prathom',
+    status: 'open',
+    price: 888,
+    courseSlugs: [],
+    ...overrides,
+  }
+}
 
 export function testSite(overrides: Partial<Site> = {}): Site {
   return {
@@ -18,7 +56,9 @@ export function testSite(overrides: Partial<Site> = {}): Site {
       { value: '3', label: 'คอร์สทั้งหมด' },
       { value: '1', label: 'เซ็ตราคาพิเศษ' },
     ],
-    instructors: [],
+    instructors: [
+      { slug: 'kru-nam', name: 'ครูพี่หนาม', role: 'ผู้สอน', shortBio: '', longBio: '', tags: [] },
+    ],
     contact: {
       line: { basicId: '@test', prefillTemplate: 'สนใจ {itemTitle}' },
       facebook: { pageId: 'testpage', url: 'https://www.facebook.com/testpage' },

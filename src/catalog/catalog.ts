@@ -2,6 +2,7 @@
 // ตัดสินเรื่องแสดง / ซ่อน / คำนวณไว้ครบที่นี่ หน้า React แค่ render ตามนั้น
 
 import type { Clip, Course, CourseSet, Review, Site } from '@content/types'
+import { validateContent } from './validate-content'
 
 export type Content = {
   courses: Course[]
@@ -77,7 +78,13 @@ export function createCatalog(content: Content) {
     }
   }
 
-  return { siteInfo, landing, footer }
+  return {
+    siteInfo,
+    landing,
+    footer,
+    /** รายการปัญหาของข้อมูล ว่างแปลว่าผ่าน */
+    validateContent: () => validateContent(content),
+  }
 }
 
 export type Catalog = ReturnType<typeof createCatalog>

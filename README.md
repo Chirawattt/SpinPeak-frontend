@@ -12,7 +12,8 @@ npm run dev        # http://localhost:3000
 | คำสั่ง | ทำอะไร |
 |---|---|
 | `npm run dev` | เปิดเว็บตอนพัฒนา |
-| `npm run build` | build แบบ production |
+| `npm run build` | ตรวจข้อมูลใน `content/` แล้ว build แบบ production (ข้อมูลผิด = build พัง) |
+| `npm run check:content` | ตรวจข้อมูลใน `content/` อย่างเดียว |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | ตรวจ type |
 | `npm test` | Vitest (`npm run test:watch` สำหรับโหมดเฝ้าดู) |
