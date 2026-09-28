@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/*
+ * design token ทั้งหมดของเว็บอยู่ที่นี่ที่เดียว ค่ามาจาก docs/design-*.html
+ * ฟอนต์โหลดผ่าน next/font ใน src/app/fonts.ts แล้วส่งเข้ามาเป็น CSS variable
+ */
+@theme inline {
+  --font-sans: var(--font-plex-thai), system-ui, sans-serif;
+  --font-heading: var(--font-anuphan), var(--font-plex-thai), sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+@theme {
+  /* สีหลัก 5 ตัว */
+  --color-brand: #85e5ff;
+  --color-ink: #0b2b33;
+  --color-line: #e3eef1;
+  --color-ink-soft: #4a6c75;
+  --color-muted: #5a7a82;
+
+  /* สีอ่อนที่ design ใช้กับเส้นแบ่ง ป้าย และลายตกแต่ง */
+  --color-divider: #e8f1f4;
+  --color-divider-soft: #edf5f7;
+  --color-brand-wash: #e6f9ff;
+  --color-brand-soft: #b6eeff;
+  --color-footer: #fbfeff;
+  --color-link-hover: #12707f;
+
+  /* ลายตกแต่งพื้นหลังของ hero */
+  --color-glow: #d6f5ff;
+  --color-glow-soft: #eafbff;
+  --color-glow-faint: #f0faff;
+  --color-dot: #bfe9f5;
+  --color-ring: #cfeaf2;
+  --color-ring-dashed: #9fddee;
+  --color-ring-faint: #dcf2f8;
+
+  /* ระยะขอบซ้ายขวาของทุก section: กว้างสุด 1180px แล้วจัดกึ่งกลาง */
+  --spacing-gutter: max(clamp(18px, 5vw, 56px), calc((100% - 1180px) / 2));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #fff;
+  color: var(--color-ink);
+}

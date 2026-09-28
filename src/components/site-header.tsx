@@ -1,0 +1,27 @@
+import Link from 'next/link'
+import { Logo } from '@/components/logo'
+
+// ไม่มีปุ่ม "เข้าสู่ระบบ": ระบบสมาชิกเป็นเฟส 2
+const NAV = [
+  { label: 'คอร์สเรียน', href: '/courses' },
+  { label: 'เซ็ตคอร์ส', href: '/sets' },
+  { label: 'แนะนำครู', href: '/#teacher' },
+  { label: 'รีวิว', href: '/#reviews' },
+]
+
+export function SiteHeader() {
+  return (
+    <header className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-divider bg-white/95 px-gutter py-[18px] backdrop-blur-sm">
+      <Link href="/" className="shrink-0">
+        <Logo size={44} priority />
+      </Link>
+      <nav className="flex flex-wrap items-center justify-end gap-x-4 gap-y-2 text-sm font-semibold sm:gap-x-5 sm:text-[15px]">
+        {NAV.map((item) => (
+          <Link key={item.href} href={item.href} className="hover:text-link-hover">
+            {item.label}
+          </Link>
+        ))}
+      </nav>
+    </header>
+  )
+}
