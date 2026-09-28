@@ -2,6 +2,8 @@
 // ตัดสินเรื่องแสดง / ซ่อน / คำนวณไว้ครบที่นี่ หน้า React แค่ render ตามนั้น
 
 import type { Clip, Course, CourseSet, Review, Site } from '@content/types'
+import { buildCourseDetail, type CourseDetail } from './course-detail'
+import { groupLink, nonEmpty, type NavLink } from './format'
 import { validateContent } from './validate-content'
 
 export type Content = {
@@ -30,7 +32,7 @@ export type SocialLink = { kind: 'instagram' | 'facebook'; label: string; href: 
 
 export type Footer = {
   blurb: string
-  groups: { label: string; href: string }[]
+  groups: NavLink[]
   /** ไม่มีค่าเมื่อ site.json เว้นว่าง ให้ซ่อนบรรทัดนั้น */
   hours?: string
   /** ไม่มีค่าเมื่อ site.json เว้นว่าง ให้ซ่อนบรรทัดนั้น */
@@ -39,12 +41,8 @@ export type Footer = {
   socials: SocialLink[]
 }
 
-function nonEmpty(value: string | undefined): string | undefined {
-  return value?.trim() ? value.trim() : undefined
-}
-
 export function createCatalog(content: Content) {
-  const { site } = content
+  const { site, courses } = content
 
   function landing(): Landing {
     return {
@@ -71,17 +69,26 @@ export function createCatalog(content: Content) {
 
     return {
       blurb: site.brand.footerBlurb,
-      groups: site.groups.map((g) => ({ label: g.label, href: `/courses?group=${g.key}` })),
+      groups: site.groups.map((g) => groupLink(g.key, g.label)),
       hours: nonEmpty(site.contact.hours),
       email: nonEmpty(site.contact.email),
       socials,
     }
   }
 
+  /** undefined เมื่อไม่มีคอร์ส slug นี้ ให้หน้าขึ้น 404 */
+  function courseDetail(slug: string): CourseDetail | undefined {
+    const course = courses.find((c) => c.slug === slug)
+    return course && buildCourseDetail(course, site)
+  }
+
   return {
     siteInfo,
     landing,
     footer,
+    courseDetail,
+    /** slug ของทุกคอร์ส ใช้ build หน้ารายละเอียดล่วงหน้า */
+    courseSlugs: () => courses.map((c) => c.slug),
     /** รายการปัญหาของข้อมูล ว่างแปลว่าผ่าน */
     validateContent: () => validateContent(content),
   }

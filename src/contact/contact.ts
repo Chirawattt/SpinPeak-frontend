@@ -1,0 +1,31 @@
+// Contact: ทุกปุ่มติดต่อบนเว็บได้ href จากที่นี่ที่เดียว
+//
+// เฟส 1 ยังไม่มี backend จึงลิงก์ตรงไป LINE OA / Messenger
+// พอ backend พร้อม ให้เปลี่ยนเป็น `/go/contact?channel=<channel>&item=<kind>:<slug>` ที่ฟังก์ชันนี้ที่เดียว
+// (แล้วตั้ง rewrite /go/* ไปที่ API) ปุ่มทั้งเว็บจะเปลี่ยนตามเอง
+
+import type { Site } from '@content/types'
+
+export type ContactChannel = 'line' | 'facebook'
+
+/** ของที่ผู้ชมสนใจ ไม่ระบุได้ (เช่น ปุ่มในหน้าแรก) */
+export type ContactItem = { kind: 'course' | 'set'; slug: string; title: string }
+
+export function createContact(site: Site) {
+  const { line, facebook } = site.contact
+
+  function contactHref(item: ContactItem | undefined, channel: ContactChannel): string {
+    if (channel === 'line') {
+      const chat = `https://line.me/R/oaMessage/${encodeURIComponent(line.basicId)}/`
+      if (!item) return chat
+      const text = line.prefillTemplate.replace('{itemTitle}', item.title)
+      return `${chat}?${encodeURIComponent(text)}`
+    }
+
+    // ref บอกเพจว่าแชทนี้มาจากคอร์สหรือเซ็ตไหน
+    const chat = `https://m.me/${facebook.pageId}`
+    return item ? `${chat}?ref=${item.kind}_${item.slug}` : chat
+  }
+
+  return { contactHref }
+}

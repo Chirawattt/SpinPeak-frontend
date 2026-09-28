@@ -25,6 +25,14 @@
   --color-brand-soft: #b6eeff;
   --color-footer: #fbfeff;
   --color-link-hover: #12707f;
+  --color-card-line: #dceef3;
+  --color-outline: #d6e8ed;
+  --color-tint: #f6fdff;
+  --color-row: #fafdfe;
+  --color-band-ink: #08232b;
+
+  /* เงาของการ์ดที่ลอยเหนือพื้น เช่น การ์ดราคาในหน้ารายละเอียด */
+  --shadow-card: 0 10px 30px rgb(11 43 51 / 0.06);
 
   /* ลายตกแต่งพื้นหลังของ hero */
   --color-glow: #d6f5ff;

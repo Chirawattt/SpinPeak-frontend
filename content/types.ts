@@ -234,25 +234,4 @@ export function formatPages(pages: PageCount | undefined): string | null {
   return typeof pages === 'number' ? `${pages} หน้า` : `${pages.min}-${pages.max} หน้า`
 }
 
-/**
- * ลิงก์ปุ่มสมัครเรียน
- *
- * ปุ่มไม่ควรลิงก์ตรงไป LINE เพราะจะไม่รู้ว่าแชทที่เข้ามาแต่ละครั้งมาจากคอร์สไหน
- * ให้ยิงไป /go/contact ที่ฝั่ง Go บันทึก lead ก่อนแล้วค่อย 302 ออกไป
- * ระหว่างที่ฝั่ง Go ยังไม่ขึ้น ใช้ lineDirectHref ไปก่อนได้ ปุ่มจะทำงานทันทีแต่วัดยอดไม่ได้
- */
-export function contactHref(
-  item: { kind: 'course' | 'set'; slug: string },
-  channel: 'line' | 'facebook' = 'line',
-): string {
-  return `/go/contact?channel=${channel}&item=${item.kind}:${item.slug}`
-}
-
-export function lineDirectHref(site: Site, itemTitle: string): string {
-  const text = site.contact.line.prefillTemplate.replace('{itemTitle}', itemTitle)
-  return `https://line.me/R/oaMessage/${site.contact.line.basicId}/?${encodeURIComponent(text)}`
-}
-
-export function messengerHref(site: Site, item: { kind: 'course' | 'set'; slug: string }): string {
-  return `https://m.me/${site.contact.facebook.pageId}?ref=${item.kind}_${item.slug}`
-}
+// ลิงก์ปุ่มติดต่อ (LINE / Messenger / /go/contact) ย้ายไปอยู่ที่ src/contact/ ที่เดียว
