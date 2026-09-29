@@ -4,7 +4,7 @@ import { setsContaining, type Course, type CourseSet, type Site } from '@content
 import type { ContactItem } from '@/contact'
 import type { Content } from './catalog'
 import { buildSetCard, type SetCard } from './set-card'
-import { cover, formatBaht, groupLabel, groupLink, nonEmpty, statsRow, type Cover, type Faq, type NavLink, type Stat } from './format'
+import { cover, formatBaht, groupLabel, groupLink, lifetimeLabel, nonEmpty, statsRow, type Cover, type Faq, type NavLink, type Stat } from './format'
 
 export type CourseInstructor = { name: string; role: string; bio: string; photo?: string }
 
@@ -116,7 +116,7 @@ export function buildCourseDetail(course: Course, { site, sets, courses }: Pick<
     cover: cover(course.group, course.coverImage),
     statusLabel: courseStatusLabel(course),
     price: formatBaht(course.price),
-    lifetime: `ดูได้${site.config.lifetimeLabel}`,
+    lifetime: lifetimeLabel(site),
     stats: statsRow(course.stats),
     content: courseContent(course),
     forWho: nonEmptyList(course.forWho),

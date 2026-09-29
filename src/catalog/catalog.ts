@@ -3,6 +3,8 @@
 
 import type { Clip, Course, CourseSet, Review, Site } from '@content/types'
 import { buildCourseDetail, type CourseDetail } from './course-detail'
+import type { CourseFilters } from './course-filters'
+import { buildCourseListIndex, buildCoursesPage, filterCourseList, type CourseList } from './course-list'
 import { groupLink, nonEmpty, type NavLink } from './format'
 import { buildSetDetail, type SetDetail } from './set-detail'
 import { validateContent } from './validate-content'
@@ -83,6 +85,13 @@ export function createCatalog(content: Content) {
     return course && buildCourseDetail(course, content)
   }
 
+  const courseListIndex = buildCourseListIndex(courses, site)
+
+  /** การ์ดคอร์สที่ผ่านตัวกรอง พร้อมจำนวน · หน้ากรองฝั่ง client ด้วย filterCourseList() กับ courseListIndex */
+  function courseList(filters: CourseFilters): CourseList {
+    return filterCourseList(courseListIndex, filters)
+  }
+
   /** undefined เมื่อไม่มีเซ็ต slug นี้ ให้หน้าขึ้น 404 */
   function setDetail(slug: string): SetDetail | undefined {
     const set = sets.find((s) => s.slug === slug)
@@ -95,6 +104,11 @@ export function createCatalog(content: Content) {
     footer,
     courseDetail,
     setDetail,
+    courseList,
+    /** ส่วนท้ายหน้ารายการคอร์ส: goal cards, รีวิว, FAQ, เวลาทำการ */
+    coursesPage: () => buildCoursesPage(site, content.reviews),
+    /** ข้อมูลที่หน้ารายการคอร์สส่งให้ client ไปกรองเอง */
+    courseListIndex: () => courseListIndex,
     /** slug ของทุกคอร์ส ใช้ build หน้ารายละเอียดล่วงหน้า */
     courseSlugs: () => courses.map((c) => c.slug),
     /** slug ของทุกเซ็ต ใช้ build หน้ารายละเอียดล่วงหน้า */

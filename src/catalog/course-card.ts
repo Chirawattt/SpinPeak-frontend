@@ -2,7 +2,7 @@
 
 import type { Course, Site } from '@content/types'
 import { courseBadge, courseStatusLabel } from './course-detail'
-import { cover, formatBaht, groupLabel, statsLine, type Cover } from './format'
+import { cover, formatBaht, groupLabel, lifetimeLabel, statsLine, SUBJECT_LABEL, type Cover } from './format'
 
 export type CourseCard = {
   slug: string
@@ -12,11 +12,15 @@ export type CourseCard = {
   tagline: string
   /** เช่น "ม.ปลาย · สอวน." */
   label: string
+  /** ป้ายวิชา เช่น "ชีววิทยา" */
+  subject: string
   cover: Cover
   /** ราคาเดี่ยวของคอร์ส */
   price: string
   /** เช่น "150 ข้อ · 6 ชม." · ไม่มีค่าเมื่อคอร์สไม่มีตัวเลขเลย */
   facts?: string
+  /** เช่น "ดูได้ตลอดชีพ" */
+  lifetime: string
   statusLabel?: string
 }
 
@@ -31,9 +35,11 @@ export function buildCourseCard(course: Course, site: Site): CourseCard {
     title: course.title,
     tagline: course.tagline,
     label: courseBadge(course, groupName),
+    subject: SUBJECT_LABEL[course.subject],
     cover: cover(course.group, course.coverImage),
     price: formatBaht(course.price),
     ...(facts && { facts }),
+    lifetime: lifetimeLabel(site),
     ...(statusLabel && { statusLabel }),
   }
 }

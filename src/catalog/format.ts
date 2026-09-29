@@ -1,6 +1,7 @@
 // type และตัวช่วยที่หลายหน้าใน Catalog ใช้ร่วมกัน
 
 import { formatPages, type CourseStats, type Group, type Site, type Subject } from '@content/types'
+import { listHref } from './course-filters'
 
 export type NavLink = { label: string; href: string }
 
@@ -37,6 +38,11 @@ export function formatBaht(amount: number): string {
   return `${amount.toLocaleString('en-US')}.-`
 }
 
+/** ป้ายดูได้ตลอดชีพ เช่น "ดูได้ตลอดชีพ" จาก site.json → config.lifetimeLabel */
+export function lifetimeLabel(site: Site): string {
+  return `ดูได้${site.config.lifetimeLabel}`
+}
+
 /** ชื่อกลุ่มจาก site.json เช่น "ม.ปลาย" */
 export function groupLabel(site: Site, group: Group): string {
   return site.groups.find((g) => g.key === group)?.label ?? group
@@ -44,7 +50,7 @@ export function groupLabel(site: Site, group: Group): string {
 
 /** ลิงก์ไปหน้ารายการคอร์สที่กรองกลุ่มนั้นไว้ */
 export function groupLink(key: Group, label: string): NavLink {
-  return { label, href: `/courses?group=${key}` }
+  return { label, href: listHref({ group: key }) }
 }
 
 /** ข้อความว่างหรือมีแต่ช่องว่าง คืน undefined ให้หน้าซ่อนช่องนั้น */

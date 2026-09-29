@@ -17,8 +17,14 @@ export function CourseCard({ card }: { card: CourseCardData }) {
         </div>
         <h3 className="font-heading text-xl leading-[1.3] font-semibold">{card.title}</h3>
         <p className="flex-1 text-[14.5px] leading-relaxed text-muted">{card.tagline}</p>
-        {card.facts && <p className="text-[13.5px] text-muted">{card.facts}</p>}
-        <div className="mt-1 font-heading text-[25px] font-bold">{card.price}</div>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[13.5px] text-muted">
+          <span className="rounded-full bg-brand-wash px-2.5 py-0.5 font-semibold text-ink">{card.subject}</span>
+          {card.facts && <span>{card.facts}</span>}
+        </div>
+        <div className="mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-1">
+          <span className="font-heading text-[25px] font-bold">{card.price}</span>
+          <span className="rounded-full border border-outline px-2.5 py-0.5 text-xs font-semibold">{card.lifetime}</span>
+        </div>
         <span className="mt-1 rounded-full bg-brand p-[13px] text-center font-semibold transition-colors group-hover:bg-brand/85">
           ดูรายละเอียด
         </span>

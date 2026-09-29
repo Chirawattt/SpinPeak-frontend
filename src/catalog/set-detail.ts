@@ -4,7 +4,7 @@ import { deriveSet, type Course, type CourseSet, type Site } from '@content/type
 import type { ContactItem } from '@/contact'
 import { buildCourseCard, type CourseCard } from './course-card'
 import { setSavings, type SetSavings } from './set-card'
-import { cover, formatBaht, groupLabel, groupLink, statsRow, SUBJECT_LABEL, type Cover, type Faq, type NavLink, type Stat } from './format'
+import { cover, formatBaht, groupLabel, groupLink, lifetimeLabel, statsRow, SUBJECT_LABEL, type Cover, type Faq, type NavLink, type Stat } from './format'
 
 export type SetDetail = {
   slug: string
@@ -53,7 +53,7 @@ export function buildSetDetail(set: CourseSet, courses: Course[], site: Site): S
     ...(set.status === 'coming_soon' && { statusLabel: 'เร็ว ๆ นี้' }),
     price: formatBaht(set.price),
     savings: setSavings(derived),
-    lifetime: `ดูได้${site.config.lifetimeLabel}`,
+    lifetime: lifetimeLabel(site),
     courseCount: `${derived.courseCount} คอร์ส`,
     subjects,
     subjectsHeading: subjects.length > 1 ? `ครบ ${subjects.length} วิชา` : 'วิชา',
