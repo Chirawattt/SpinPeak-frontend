@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { catalog, type CourseDetail } from '@/catalog'
-import { ContactButton } from '@/components/contact-button'
-import { CoverBox } from '@/components/cover-box'
+import { ClosingBand, DetailHeading, DetailTop, PriceCard, Pill, SectionTitle } from '@/components/detail-page'
 import { FaqList } from '@/components/faq-list'
 
 // build ทุกคอร์สล่วงหน้า slug ที่ไม่มีอยู่ขึ้น 404
@@ -27,78 +25,35 @@ export default async function CourseDetailPage({ params }: PageProps<'/courses/[
     <>
       <Top detail={detail} />
       <Body detail={detail} />
-      <ClosingBand detail={detail} />
+      <ClosingBand price={detail.price} lifetime={detail.lifetime} contactItem={detail.contactItem} />
     </>
   )
 }
 
 function Top({ detail }: { detail: CourseDetail }) {
   return (
-    <section className="relative overflow-hidden border-b border-card-line bg-white bg-[radial-gradient(circle_at_96%_70%,var(--color-glow-soft)_0,transparent_40%),radial-gradient(circle_at_78%_6%,var(--color-glow-faint)_0,transparent_30%)]">
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(var(--color-dot)_1.4px,transparent_1.5px)] bg-size-[26px_26px] opacity-35" />
-
-      <nav aria-label="breadcrumb" className="relative px-gutter py-5 text-sm text-muted">
-        <Link href="/" className="hover:text-ink">หน้าแรก</Link>
-        {' / '}
-        <Link href={detail.group.href} className="hover:text-ink">{detail.group.label}</Link>
-        {' / '}
-        <span className="text-ink">{detail.title}</span>
-      </nav>
-
-      <div className="relative grid gap-x-9 gap-y-7 px-gutter pt-1 pb-14 lg:grid-cols-[minmax(0,1fr)_340px] lg:grid-rows-[auto_1fr] lg:pb-16">
-        <div className="min-w-0 lg:col-start-1 lg:row-start-1">
-          <div className="mb-4 flex flex-wrap gap-2">
-            <span className="rounded-full bg-brand px-4 py-[7px] text-[13px] font-semibold">
-              {detail.badge}
-            </span>
-            {detail.statusLabel && (
-              <span className="rounded-full border-[1.5px] border-ink px-4 py-[5.5px] text-[13px] font-semibold">
-                {detail.statusLabel}
-              </span>
-            )}
-          </div>
-          <h1 className="mb-3.5 font-heading text-[clamp(28px,5.2vw,44px)] leading-[1.2] font-bold">{detail.title}</h1>
-          <p className="max-w-[600px] text-lg leading-[1.75] text-ink-soft">{detail.tagline}</p>
-        </div>
-
-        <PriceCard detail={detail} />
-
-        {detail.stats.length > 0 && (
-          <dl className="flex flex-wrap content-start gap-x-7 gap-y-4 lg:col-start-1 lg:row-start-2">
-            {detail.stats.map((stat) => (
-              <div key={stat.label} className="flex flex-col-reverse">
-                <dt className="text-sm text-muted">{stat.label}</dt>
-                <dd className="font-heading text-2xl font-bold">{stat.value}</dd>
-              </div>
-            ))}
-          </dl>
-        )}
+    <DetailTop
+      crumbs={[{ label: 'หน้าแรก', href: '/' }, detail.group]}
+      current={detail.title}
+      stats={detail.stats}
+      aside={
+        <PriceCard
+          cover={detail.cover}
+          coverLabel={detail.category}
+          title={detail.title}
+          price={detail.price}
+          lifetime={detail.lifetime}
+          contactItem={detail.contactItem}
+        />
+      }
+    >
+      <div className="mb-4 flex flex-wrap gap-2">
+        <Pill>{detail.badge}</Pill>
+        {detail.statusLabel && <Pill variant="outline">{detail.statusLabel}</Pill>}
       </div>
-    </section>
+      <DetailHeading title={detail.title} tagline={detail.tagline} />
+    </DetailTop>
   )
-}
-
-/** มือถือ: อยู่ถัดจากชื่อคอร์สทันที เห็นราคาและปุ่มติดต่อโดยไม่ต้องเลื่อน · จอใหญ่: คอลัมน์ขวา */
-function PriceCard({ detail }: { detail: CourseDetail }) {
-  return (
-    <aside className="min-w-0 self-start rounded-[20px] border border-card-line bg-white p-5 shadow-card lg:col-start-2 lg:row-span-2 lg:row-start-1">
-      <CoverBox cover={detail.cover} label={detail.category} title={detail.title} className="mb-[18px] hidden lg:block" />
-      <div className="mb-[18px] flex flex-wrap items-center gap-x-3 gap-y-1">
-        <span className="font-heading text-[clamp(31px,4.4vw,38px)] font-bold">{detail.price}</span>
-        <span className="rounded-full bg-brand-wash px-3 py-1 text-[13px] font-semibold">{detail.lifetime}</span>
-      </div>
-      <ContactButton item={detail.contactItem} className="mb-2.5 text-[17px]" />
-      <ContactButton item={detail.contactItem} channel="facebook" variant="outline" />
-      <ul className="mt-[18px] flex flex-col gap-2.5 border-t border-divider-soft pt-[18px] text-[14.5px] leading-relaxed text-ink-soft">
-        <li>ดูย้อนหลังได้ไม่จำกัด ไม่มีวันหมดอายุ</li>
-        <li>ถ้าอัดเนื้อหาใหม่ คนที่ซื้อแล้วได้ของใหม่ด้วย ไม่ต้องจ่ายเพิ่ม</li>
-      </ul>
-    </aside>
-  )
-}
-
-function SectionTitle({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return <h2 className={`mb-4 font-heading text-[clamp(23px,3.4vw,28px)] font-bold ${className}`}>{children}</h2>
 }
 
 function Body({ detail }: { detail: CourseDetail }) {
@@ -169,19 +124,5 @@ function Body({ detail }: { detail: CourseDetail }) {
         </aside>
       )}
     </div>
-  )
-}
-
-function ClosingBand({ detail }: { detail: CourseDetail }) {
-  return (
-    <section className="flex flex-wrap items-center justify-between gap-x-8 gap-y-6 bg-brand px-gutter py-11">
-      <div>
-        <h2 className="mb-2 font-heading text-[clamp(24px,4vw,30px)] font-bold text-band-ink">พร้อมเริ่มเรียนแล้วใช่ไหม</h2>
-        <p className="text-base">
-          {detail.price} ครั้งเดียว {detail.lifetime}
-        </p>
-      </div>
-      <ContactButton item={detail.contactItem} className="px-10 text-lg whitespace-nowrap" />
-    </section>
   )
 }

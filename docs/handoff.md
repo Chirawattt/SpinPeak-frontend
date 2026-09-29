@@ -124,7 +124,7 @@ type: `Group` `Subject` `Status` `SaleMode` `PageCount` `CourseStats` `Chapter` 
 
 | ฟังก์ชัน | ทำอะไร |
 |---|---|
-| `deriveSet(set, courses, config)` | คำนวณราคาเต็ม ส่วนลด % ประหยัดกี่บาท ควรโชว์ป้ายลดไหม จำนวนคอร์ส ยอดรวมข้อสอบ/ชั่วโมง |
+| `deriveSet(set, courses, config)` | คำนวณราคาเต็ม ส่วนลด % ประหยัดกี่บาท ควรโชว์ป้ายลดไหม จำนวนคอร์ส ยอดรวมข้อสอบ/หน้า PDF/ชั่วโมง (ข้ามคอร์สที่ไม่มีค่า ไม่มีเลยเป็น undefined ไม่ใช่ 0) |
 | `setsContaining(course, sets, courses, config)` | หา SET ทั้งหมดที่คอร์สนี้อยู่ ใช้ทำบล็อก "คอร์สนี้อยู่ในชุด" ในหน้ารายละเอียด |
 | `trackLabelsByGroup(courses)` | คืน track ที่มีอยู่จริงในแต่ละกลุ่ม ใช้สร้างแถบ filter โดยไม่ hardcode |
 | `formatPages(pages)` | `5` → `"5 หน้า"`, `{min:30,max:70}` → `"30–70 หน้า"`, ไม่มีค่า → `null` |

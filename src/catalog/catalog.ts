@@ -4,6 +4,7 @@
 import type { Clip, Course, CourseSet, Review, Site } from '@content/types'
 import { buildCourseDetail, type CourseDetail } from './course-detail'
 import { groupLink, nonEmpty, type NavLink } from './format'
+import { buildSetDetail, type SetDetail } from './set-detail'
 import { validateContent } from './validate-content'
 
 export type Content = {
@@ -42,7 +43,7 @@ export type Footer = {
 }
 
 export function createCatalog(content: Content) {
-  const { site, courses } = content
+  const { site, courses, sets } = content
 
   function landing(): Landing {
     return {
@@ -82,13 +83,22 @@ export function createCatalog(content: Content) {
     return course && buildCourseDetail(course, site)
   }
 
+  /** undefined เมื่อไม่มีเซ็ต slug นี้ ให้หน้าขึ้น 404 */
+  function setDetail(slug: string): SetDetail | undefined {
+    const set = sets.find((s) => s.slug === slug)
+    return set && buildSetDetail(set, courses, site)
+  }
+
   return {
     siteInfo,
     landing,
     footer,
     courseDetail,
+    setDetail,
     /** slug ของทุกคอร์ส ใช้ build หน้ารายละเอียดล่วงหน้า */
     courseSlugs: () => courses.map((c) => c.slug),
+    /** slug ของทุกเซ็ต ใช้ build หน้ารายละเอียดล่วงหน้า */
+    setSlugs: () => sets.map((s) => s.slug),
     /** รายการปัญหาของข้อมูล ว่างแปลว่าผ่าน */
     validateContent: () => validateContent(content),
   }

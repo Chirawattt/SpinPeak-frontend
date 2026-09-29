@@ -1,10 +1,8 @@
 // ข้อมูลหน้ารายละเอียดคอร์ส: ช่องที่ไม่มีข้อมูลถูกตัดทิ้งที่นี่แล้ว หน้า React ไม่ต้องเช็กเอง
 
-import { formatPages, type Course, type Site } from '@content/types'
+import type { Course, Site } from '@content/types'
 import type { ContactItem } from '@/contact'
-import { cover, formatBaht, groupLink, nonEmpty, type Cover, type Faq, type NavLink } from './format'
-
-export type Stat = { value: string; label: string }
+import { cover, formatBaht, groupLabel, groupLink, nonEmpty, statsRow, type Cover, type Faq, type NavLink, type Stat } from './format'
 
 export type CourseInstructor = { name: string; role: string; bio: string; photo?: string }
 
@@ -42,21 +40,6 @@ export type CourseDetail = {
   contactItem: ContactItem
 }
 
-/** ค่า 0 นับว่าไม่มีข้อมูล จะได้ไม่ขึ้น "0 ชม." */
-function present(value: number | undefined): value is number {
-  return value != null && value > 0
-}
-
-function courseStats({ questionCount, pdfPages, videoHours }: Course['stats']): Stat[] {
-  const out: Stat[] = []
-  if (present(questionCount)) out.push({ value: `${questionCount} ข้อ`, label: 'ข้อสอบ' })
-  // หน้า PDF เป็นช่วงได้ ({min,max}) ตัวเลขเดี่ยวใช้กฎ 0 = ไม่มีข้อมูลเหมือนตัวอื่น
-  const pages = typeof pdfPages === 'number' && !present(pdfPages) ? null : formatPages(pdfPages)
-  if (pages) out.push({ value: pages, label: 'ไฟล์ PDF' })
-  if (present(videoHours)) out.push({ value: `${videoHours} ชม.`, label: 'วิดีโอ' })
-  return out
-}
-
 /** รายการที่ว่างหรือมีแต่ช่องว่าง คืน undefined ให้หน้าซ่อน section นั้น */
 function nonEmptyList(items: string[]): string[] | undefined {
   const kept = items.map((i) => i.trim()).filter(Boolean)
@@ -76,9 +59,15 @@ function courseContent(course: Course): CourseContent | undefined {
   }
 }
 
-function statusLabel(course: Course): string | undefined {
+/** ไม่มีค่าเมื่อคอร์สเปิดรับตามปกติ · การ์ดคอร์สใช้ด้วย */
+export function courseStatusLabel(course: Course): string | undefined {
   if (course.status !== 'coming_soon') return undefined
   return course.openDate ? `เร็ว ๆ นี้ · เปิด ${course.openDate}` : 'เร็ว ๆ นี้'
+}
+
+/** เช่น "ม.ปลาย · สอวน." · หมวดหมู่ชื่อซ้ำกับกลุ่มแสดงครั้งเดียว · การ์ดคอร์สใช้ด้วย */
+export function courseBadge(course: Course, groupName: string): string {
+  return course.category === groupName ? groupName : `${groupName} · ${course.category}`
 }
 
 function courseInstructor(course: Course, site: Site): CourseInstructor | undefined {
@@ -89,20 +78,20 @@ function courseInstructor(course: Course, site: Site): CourseInstructor | undefi
 }
 
 export function buildCourseDetail(course: Course, site: Site): CourseDetail {
-  const groupLabel = site.groups.find((g) => g.key === course.group)?.label ?? course.group
+  const groupName = groupLabel(site, course.group)
 
   return {
     slug: course.slug,
     title: nonEmpty(course.fullTitle) ?? course.title,
     tagline: course.tagline,
-    group: groupLink(course.group, groupLabel),
+    group: groupLink(course.group, groupName),
     category: course.category,
-    badge: course.category === groupLabel ? groupLabel : `${groupLabel} · ${course.category}`,
+    badge: courseBadge(course, groupName),
     cover: cover(course.group, course.coverImage),
-    statusLabel: statusLabel(course),
+    statusLabel: courseStatusLabel(course),
     price: formatBaht(course.price),
     lifetime: `ดูได้${site.config.lifetimeLabel}`,
-    stats: courseStats(course.stats),
+    stats: statsRow(course.stats),
     content: courseContent(course),
     forWho: nonEmptyList(course.forWho),
     deliverables: nonEmpty(course.deliverables),

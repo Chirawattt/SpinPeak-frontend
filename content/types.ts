@@ -173,7 +173,32 @@ export type SetDerived = {
   /** false = ซ่อนป้ายประหยัดไปเลย อย่าโชว์ "ประหยัด 10 บาท" */
   showSavingsBadge: boolean
   courseCount: number
-  totals: { questionCount: number; videoHours: number }
+  /**
+   * ยอดรวม ข้อสอบ / หน้า PDF / ชั่วโมงวิดีโอ ของคอร์สสมาชิก ข้ามคอร์สที่ไม่มีค่า
+   * ช่องที่ไม่มีคอร์สไหนมีค่าเลยเป็น undefined ไม่ใช่ 0 จะได้ไม่ขึ้น "0 ชม." ปลอม
+   * หน้า PDF ที่เป็นช่วงรวมเป็นช่วง เช่น 80 + (30-70) = 110-150 ยังเป็นตัวเลขจริง
+   */
+  totals: CourseStats
+}
+
+/** ค่า 0 นับว่าไม่มีข้อมูล เหมือนหน้ารายละเอียดคอร์ส */
+function sumPresent(values: (number | undefined)[]): number | undefined {
+  const kept = values.filter((v): v is number => v != null && v > 0)
+  return kept.length > 0 ? kept.reduce((a, b) => a + b, 0) : undefined
+}
+
+function sumStats(all: CourseStats[]): CourseStats {
+  const pages = all.map((s) => s.pdfPages).filter((p): p is PageCount => p != null)
+  const min = sumPresent(pages.map((p) => (typeof p === 'number' ? p : p.min)))
+  const max = sumPresent(pages.map((p) => (typeof p === 'number' ? p : p.max)))
+  const hours = sumPresent(all.map((s) => s.videoHours))
+
+  return {
+    questionCount: sumPresent(all.map((s) => s.questionCount)),
+    pdfPages: min == null || max == null ? undefined : min === max ? min : { min, max },
+    // ปัดเศษที่เกิดจากการบวกทศนิยม เช่น 1.1 + 2.2 = 3.3000000000000003
+    videoHours: hours == null ? undefined : Math.round(hours * 100) / 100,
+  }
 }
 
 export function deriveSet(
@@ -198,12 +223,8 @@ export function deriveSet(
       savings >= config.savingsBadge.minBaht ||
       savingsPercent >= config.savingsBadge.minPercent,
     courseCount: members.length,
-    totals: {
-      questionCount: members.reduce((n, c) => n + (c.stats.questionCount ?? 0), 0),
-      videoHours: members.reduce((n, c) => n + (c.stats.videoHours ?? 0), 0),
-    },
+    totals: sumStats(members.map((c) => c.stats)),
   }
-  // หมายเหตุ: totals ไม่รวม pdfPages เพราะบางคอร์สเป็นช่วง บวกกันแล้วได้ตัวเลขที่ไม่จริง
 }
 
 /** เซ็ตทุกตัวที่มีคอร์สนี้ เรียงจากประหยัดมากไปน้อย ใช้ทำกล่อง "ซื้อเป็น SET คุ้มกว่า" */

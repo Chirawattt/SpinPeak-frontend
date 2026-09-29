@@ -30,6 +30,8 @@
   --color-tint: #f6fdff;
   --color-row: #fafdfe;
   --color-band-ink: #08232b;
+  /* ราคาขีดฆ่า (ราคาปกติของเซ็ต) */
+  --color-strike: #96aeb5;
 
   /* เงาของการ์ดที่ลอยเหนือพื้น เช่น การ์ดราคาในหน้ารายละเอียด */
   --shadow-card: 0 10px 30px rgb(11 43 51 / 0.06);
