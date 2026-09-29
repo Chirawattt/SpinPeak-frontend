@@ -2,7 +2,7 @@
 
 import type { Course, Site } from '@content/types'
 import { courseBadge, courseStatusLabel } from './course-detail'
-import { cover, formatBaht, groupLabel, statsRow, type Cover } from './format'
+import { cover, formatBaht, groupLabel, statsLine, type Cover } from './format'
 
 export type CourseCard = {
   slug: string
@@ -22,9 +22,7 @@ export type CourseCard = {
 
 export function buildCourseCard(course: Course, site: Site): CourseCard {
   const groupName = groupLabel(site, course.group)
-  const facts = statsRow(course.stats)
-    .map((s) => s.value)
-    .join(' · ')
+  const facts = statsLine(course.stats)
   const statusLabel = courseStatusLabel(course)
 
   return {

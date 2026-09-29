@@ -3,16 +3,8 @@
 import { deriveSet, type Course, type CourseSet, type Site } from '@content/types'
 import type { ContactItem } from '@/contact'
 import { buildCourseCard, type CourseCard } from './course-card'
+import { setSavings, type SetSavings } from './set-card'
 import { cover, formatBaht, groupLabel, groupLink, statsRow, SUBJECT_LABEL, type Cover, type Faq, type NavLink, type Stat } from './format'
-
-/** ส่วนที่ประหยัดเมื่อเทียบกับซื้อคอร์สแยก */
-export type SetSavings = {
-  /** ผลรวมราคาคอร์สในเซ็ต แสดงเป็นราคาขีดฆ่า */
-  regularPrice: string
-  amount: string
-  /** ปัดลงเสมอ จะได้ไม่โฆษณาเกินจริง เช่น 12.5% → "12%" */
-  percent: string
-}
 
 export type SetDetail = {
   slug: string
@@ -60,13 +52,7 @@ export function buildSetDetail(set: CourseSet, courses: Course[], site: Site): S
     cover: cover(set.group, set.coverImage),
     ...(set.status === 'coming_soon' && { statusLabel: 'เร็ว ๆ นี้' }),
     price: formatBaht(set.price),
-    savings: derived.showSavingsBadge
-      ? {
-          regularPrice: formatBaht(derived.compareAtPrice),
-          amount: formatBaht(derived.savings),
-          percent: `${Math.floor(derived.savingsPercent)}%`,
-        }
-      : undefined,
+    savings: setSavings(derived),
     lifetime: `ดูได้${site.config.lifetimeLabel}`,
     courseCount: `${derived.courseCount} คอร์ส`,
     subjects,

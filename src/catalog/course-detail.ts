@@ -1,7 +1,9 @@
 // ข้อมูลหน้ารายละเอียดคอร์ส: ช่องที่ไม่มีข้อมูลถูกตัดทิ้งที่นี่แล้ว หน้า React ไม่ต้องเช็กเอง
 
-import type { Course, Site } from '@content/types'
+import { setsContaining, type Course, type CourseSet, type Site } from '@content/types'
 import type { ContactItem } from '@/contact'
+import type { Content } from './catalog'
+import { buildSetCard, type SetCard } from './set-card'
 import { cover, formatBaht, groupLabel, groupLink, nonEmpty, statsRow, type Cover, type Faq, type NavLink, type Stat } from './format'
 
 export type CourseInstructor = { name: string; role: string; bio: string; photo?: string }
@@ -38,7 +40,19 @@ export type CourseDetail = {
   instructor?: CourseInstructor
   faqs: Faq[]
   contactItem: ContactItem
+  /** กล่อง "ซื้อเป็นเซ็ตคุ้มกว่า" · ไม่มีค่าเมื่อคอร์สไม่อยู่ในเซ็ตไหน หรือขายเดี่ยวเท่านั้น */
+  sets?: CourseSets
 }
+
+/** เซ็ตที่มีคอร์สนี้ เรียงจากประหยัดมากไปน้อย */
+export type CourseSets = {
+  /** 3 เซ็ตแรกที่แสดงทันที */
+  top: SetCard[]
+  /** เซ็ตที่เหลือ กางดูในหน้าเดิม · ไม่มีค่าเมื่อคอร์สอยู่ไม่เกิน 3 เซ็ต ไม่ต้องมีปุ่ม */
+  more?: { label: string; sets: SetCard[] }
+}
+
+const TOP_SETS = 3
 
 /** รายการที่ว่างหรือมีแต่ช่องว่าง คืน undefined ให้หน้าซ่อน section นั้น */
 function nonEmptyList(items: string[]): string[] | undefined {
@@ -77,7 +91,19 @@ function courseInstructor(course: Course, site: Site): CourseInstructor | undefi
   return { name: instructor.name, role: instructor.role, bio: instructor.shortBio, ...(photo && { photo }) }
 }
 
-export function buildCourseDetail(course: Course, site: Site): CourseDetail {
+function courseSets(course: Course, sets: CourseSet[], courses: Course[], site: Site): CourseSets | undefined {
+  if (course.saleMode === 'standalone_only') return undefined
+  const found = setsContaining(course, sets, courses, site.config)
+  if (found.length === 0) return undefined
+  const cards = found.map(({ set, derived }) => buildSetCard(set, derived))
+  const rest = cards.slice(TOP_SETS)
+  return {
+    top: cards.slice(0, TOP_SETS),
+    ...(rest.length > 0 && { more: { label: `ดูอีก ${rest.length} เซ็ต`, sets: rest } }),
+  }
+}
+
+export function buildCourseDetail(course: Course, { site, sets, courses }: Pick<Content, 'site' | 'sets' | 'courses'>): CourseDetail {
   const groupName = groupLabel(site, course.group)
 
   return {
@@ -98,5 +124,6 @@ export function buildCourseDetail(course: Course, site: Site): CourseDetail {
     instructor: courseInstructor(course, site),
     faqs: [...(course.faqs ?? []), ...site.faqs],
     contactItem: { kind: 'course', slug: course.slug, title: course.title },
+    sets: courseSets(course, sets, courses, site),
   }
 }

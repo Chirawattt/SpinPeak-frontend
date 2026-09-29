@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { catalog, type CourseDetail } from '@/catalog'
+import { catalog, type CourseDetail, type CourseInstructor } from '@/catalog'
 import { ClosingBand, DetailHeading, DetailTop, PriceCard, Pill, SectionTitle } from '@/components/detail-page'
 import { FaqList } from '@/components/faq-list'
+import { SetOffers } from '@/components/set-offers'
 
 // build ทุกคอร์สล่วงหน้า slug ที่ไม่มีอยู่ขึ้น 404
 export const dynamicParams = false
@@ -107,22 +108,31 @@ function Body({ detail }: { detail: CourseDetail }) {
         </section>
       </div>
 
-      {detail.instructor && (
-        <aside className="self-start rounded-[20px] border border-line p-6">
-          <div className="mb-3.5 flex items-center gap-3.5">
-            {detail.instructor.photo && (
-              <div className="flex h-16 w-16 flex-none items-end justify-center overflow-hidden rounded-full bg-brand">
-                <Image src={detail.instructor.photo} alt={detail.instructor.name} width={78} height={78} className="-mb-1.5 h-auto w-[78px] max-w-none" />
-              </div>
-            )}
-            <div>
-              <div className="font-heading text-xl font-semibold">{detail.instructor.name}</div>
-              <div className="text-sm text-muted">{detail.instructor.role}</div>
-            </div>
-          </div>
-          <p className="text-[15px] leading-[1.75] text-ink-soft">{detail.instructor.bio}</p>
-        </aside>
+      {(detail.sets || detail.instructor) && (
+        <div className="flex min-w-0 flex-col gap-5 self-start">
+          {detail.sets && <SetOffers sets={detail.sets} />}
+          {detail.instructor && <Instructor instructor={detail.instructor} />}
+        </div>
       )}
     </div>
+  )
+}
+
+function Instructor({ instructor }: { instructor: CourseInstructor }) {
+  return (
+    <aside className="rounded-[20px] border border-line p-6">
+      <div className="mb-3.5 flex items-center gap-3.5">
+        {instructor.photo && (
+          <div className="flex h-16 w-16 flex-none items-end justify-center overflow-hidden rounded-full bg-brand">
+            <Image src={instructor.photo} alt={instructor.name} width={78} height={78} className="-mb-1.5 h-auto w-[78px] max-w-none" />
+          </div>
+        )}
+        <div>
+          <div className="font-heading text-xl font-semibold">{instructor.name}</div>
+          <div className="text-sm text-muted">{instructor.role}</div>
+        </div>
+      </div>
+      <p className="text-[15px] leading-[1.75] text-ink-soft">{instructor.bio}</p>
+    </aside>
   )
 }

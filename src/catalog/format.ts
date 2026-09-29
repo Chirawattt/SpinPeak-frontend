@@ -57,6 +57,13 @@ function present(value: number | undefined): value is number {
   return value != null && value > 0
 }
 
+/** ตัวเลขทั้งแถวในบรรทัดเดียว เช่น "150 ข้อ · 6 ชม." สำหรับการ์ด · ว่างเมื่อไม่มีตัวเลขเลย */
+export function statsLine(stats: CourseStats): string {
+  return statsRow(stats)
+    .map((s) => s.value)
+    .join(' · ')
+}
+
 /** แถว ข้อสอบ / หน้า PDF / ชั่วโมงวิดีโอ เฉพาะตัวที่มีค่า */
 export function statsRow({ questionCount, pdfPages, videoHours }: CourseStats): Stat[] {
   const out: Stat[] = []

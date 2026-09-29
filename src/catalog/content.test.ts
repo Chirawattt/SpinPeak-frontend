@@ -8,4 +8,15 @@ describe('content/', () => {
   it('has no data problems', () => {
     expect(catalog.validateContent()).toEqual([])
   })
+
+  it('links every set box on a course page to a set page that gets built', () => {
+    const built = new Set(catalog.setSlugs().map((slug) => `/sets/${slug}`))
+    const broken = catalog.courseSlugs().flatMap((slug) => {
+      const sets = catalog.courseDetail(slug)?.sets
+      const cards = [...(sets?.top ?? []), ...(sets?.more?.sets ?? [])]
+      return cards.filter((card) => !built.has(card.href)).map((card) => `${slug} → ${card.href}`)
+    })
+
+    expect(broken).toEqual([])
+  })
 })

@@ -80,7 +80,7 @@ export function createCatalog(content: Content) {
   /** undefined เมื่อไม่มีคอร์ส slug นี้ ให้หน้าขึ้น 404 */
   function courseDetail(slug: string): CourseDetail | undefined {
     const course = courses.find((c) => c.slug === slug)
-    return course && buildCourseDetail(course, site)
+    return course && buildCourseDetail(course, content)
   }
 
   /** undefined เมื่อไม่มีเซ็ต slug นี้ ให้หน้าขึ้น 404 */

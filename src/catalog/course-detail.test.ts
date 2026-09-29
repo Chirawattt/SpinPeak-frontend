@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import type { Course, Instructor } from '@content/types'
+import type { Course, CourseSet, Instructor } from '@content/types'
 import { createCatalog } from './catalog'
-import { testContent, testCourse, testSite } from './test-content'
+import { testContent, testCourse, testSet, testSite } from './test-content'
 
 const kruNam: Instructor = {
   slug: 'kru-nam',
@@ -203,5 +203,74 @@ describe('courseDetail()', () => {
     const courses = [testCourse({ slug: 'a-course' }), testCourse({ slug: 'b-course' })]
 
     expect(createCatalog(testContent({ courses })).courseSlugs()).toEqual(['a-course', 'b-course'])
+  })
+
+  describe('sets that include the course', () => {
+    const course = testCourse({ slug: 'primary-exercise-p4', price: 299 })
+
+    /** เซ็ตที่มีคอร์สนี้ ขายรวม setPrice บาท · คอร์สอื่นในเซ็ตราคา 500 */
+    function setWith(slug: string, setPrice: number, overrides: Partial<CourseSet> = {}): CourseSet {
+      return testSet({ code: slug.toUpperCase(), slug, price: setPrice, courseSlugs: ['primary-exercise-p4', 'other-course'], ...overrides })
+    }
+
+    function setsOf(sets: CourseSet[], subject: Course = course) {
+      const other = testCourse({ slug: 'other-course', price: 500 })
+      return createCatalog(testContent({ courses: [subject, other], sets })).courseDetail(subject.slug)?.sets
+    }
+
+    it('shows no set box for a course that is in no set', () => {
+      expect(setsOf([])).toBeUndefined()
+    })
+
+    it('shows no set box for a course sold on its own only, even if a set lists it by mistake', () => {
+      // validateContent() กันกรณีนี้ตอน build อยู่แล้ว แต่หน้าคอร์สไม่ควรโฆษณาเซ็ตให้คอร์สที่ขายเดี่ยวเท่านั้น
+      const standalone = testCourse({ slug: 'primary-exercise-p4', saleMode: 'standalone_only' })
+
+      expect(setsOf([setWith('some-bundle', 499)], standalone)).toBeUndefined()
+    })
+
+    it('lists the sets from the biggest saving to the smallest, each linking to its set page', () => {
+      // ราคาปกติทุกเซ็ต = 299 + 500 = 799
+      const sets = setsOf([setWith('small-bundle', 699), setWith('big-bundle', 499), setWith('mid-bundle', 599)])
+
+      expect(sets?.top.map((s) => s.href)).toEqual(['/sets/big-bundle', '/sets/mid-bundle', '/sets/small-bundle'])
+      expect(sets?.top[0]).toMatchObject({
+        title: 'วิทยาศาสตร์ ป.4',
+        price: '499.-',
+        savings: { regularPrice: '799.-', amount: '300.-', percent: '37%' },
+      })
+    })
+
+    it('uses the same savings badge rule as the set page: too small a saving shows one price', () => {
+      // ประหยัด 10 บาท (1.3%) ไม่ถึงเกณฑ์ 10% หรือ 100 บาท
+      const [card] = setsOf([setWith('tiny-bundle', 789)])?.top ?? []
+
+      expect(card?.price).toBe('789.-')
+      expect(card).not.toHaveProperty('savings')
+    })
+
+    it('sums up each set in one line: how many courses and the totals it has', () => {
+      const subject = testCourse({ slug: 'primary-exercise-p4', stats: { questionCount: 100, videoHours: 4 } })
+      const other = testCourse({ slug: 'other-course', stats: { questionCount: 50, pdfPages: 80 } })
+      const set = setWith('pair-bundle', 499)
+      const sets = createCatalog(testContent({ courses: [subject, other], sets: [set] })).courseDetail(subject.slug)?.sets
+
+      expect(sets?.top[0]?.summary).toBe('รวม 2 คอร์ส · 150 ข้อ · 80 หน้า · 4 ชม.')
+    })
+
+    it('shows the three best sets first and folds the rest behind a "see N more" button', () => {
+      const sets = setsOf([599, 499, 699, 549, 649].map((price, i) => setWith(`set-${i}-bundle`, price)))
+
+      expect(sets?.top.map((s) => s.price)).toEqual(['499.-', '549.-', '599.-'])
+      expect(sets?.more?.label).toBe('ดูอีก 2 เซ็ต')
+      expect(sets?.more?.sets.map((s) => s.price)).toEqual(['649.-', '699.-'])
+    })
+
+    it.each([1, 2, 3])('has no "see more" button for a course in %i set(s)', (count) => {
+      const sets = setsOf(Array.from({ length: count }, (_, i) => setWith(`set-${i}-bundle`, 599)))
+
+      expect(sets?.top).toHaveLength(count)
+      expect(sets).not.toHaveProperty('more')
+    })
   })
 })
