@@ -7,6 +7,7 @@ import type { CourseFilters } from './course-filters'
 import { buildCourseListIndex, buildCoursesPage, filterCourseList, type CourseList } from './course-list'
 import { groupLink, nonEmpty, type NavLink } from './format'
 import { buildSetDetail, type SetDetail } from './set-detail'
+import { buildSetListIndex, filterSetList, type SetFilters, type SetList } from './set-list'
 import { validateContent } from './validate-content'
 
 export type Content = {
@@ -92,6 +93,13 @@ export function createCatalog(content: Content) {
     return filterCourseList(courseListIndex, filters)
   }
 
+  const setListIndex = buildSetListIndex(sets, courses, site)
+
+  /** การ์ดเซ็ตที่ผ่านตัวกรอง พร้อมจำนวน · หน้ากรองฝั่ง client ด้วย filterSetList() กับ setListIndex */
+  function setList(filters: SetFilters): SetList {
+    return filterSetList(setListIndex, filters)
+  }
+
   /** undefined เมื่อไม่มีเซ็ต slug นี้ ให้หน้าขึ้น 404 */
   function setDetail(slug: string): SetDetail | undefined {
     const set = sets.find((s) => s.slug === slug)
@@ -104,6 +112,9 @@ export function createCatalog(content: Content) {
     footer,
     courseDetail,
     setDetail,
+    setList,
+    /** ข้อมูลที่หน้ารายการเซ็ตส่งให้ client ไปกรองเอง */
+    setListIndex: () => setListIndex,
     courseList,
     /** ส่วนท้ายหน้ารายการคอร์ส: goal cards, รีวิว, FAQ, เวลาทำการ */
     coursesPage: () => buildCoursesPage(site, content.reviews),

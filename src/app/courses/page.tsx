@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Suspense } from 'react'
 import { catalog, type GoalLink, type ReviewQuote } from '@/catalog'
 import { ContactButton } from '@/components/contact-button'
-import { CourseGrid, CourseGridFromUrl, GroupTabs, GroupTabsFromUrl } from '@/components/course-browser'
+import { CourseGrid, CourseFilterBar, CourseGridFromUrl, FilterBarFromUrl, GroupTabs, GroupTabsFromUrl } from '@/components/course-browser'
 import { FaqList } from '@/components/faq-list'
 
 // build แบบ static ทั้งหน้า แล้วกรองฝั่ง client ตาม query string (?group=mplai)
@@ -17,6 +17,8 @@ export const metadata: Metadata = { title: TITLE, description: INTRO }
 export default function CoursesPage() {
   const index = catalog.courseListIndex()
   const page = catalog.coursesPage()
+
+  const emptyAction = <ContactButton variant="brand" className="text-base">ทักแอดมินให้ช่วยเลือก</ContactButton>
 
   return (
     <>
@@ -33,11 +35,14 @@ export default function CoursesPage() {
           <Suspense fallback={<GroupTabs index={index} filters={{}} />}>
             <GroupTabsFromUrl index={index} />
           </Suspense>
+          <Suspense fallback={<CourseFilterBar index={index} filters={{}} />}>
+            <FilterBarFromUrl index={index} />
+          </Suspense>
         </div>
       </section>
 
-      <Suspense fallback={<CourseGrid index={index} filters={{}} />}>
-        <CourseGridFromUrl index={index} />
+      <Suspense fallback={<CourseGrid index={index} filters={{}} emptyAction={emptyAction} />}>
+        <CourseGridFromUrl index={index} emptyAction={emptyAction} />
       </Suspense>
 
       <Goals goals={page.goals} />

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { catalog as realCatalog } from '.'
 import { createCatalog } from './catalog'
-import { filtersToQuery, parseFilters } from './course-filters'
+import { filtersToQuery, listHref, parseFilters } from './course-filters'
 import { testContent, testCourse, testSite } from './test-content'
 
 // คอร์สตัวอย่างตามลำดับในชีต: กลุ่มสลับกันเพื่อให้เห็นว่าไม่ได้เรียงตามกลุ่ม
@@ -86,6 +86,89 @@ describe('parseFilters() / filtersToQuery()', () => {
   })
 })
 
+describe('track and search filters', () => {
+  const cs = [
+    testCourse({ slug: 'a', title: 'ชีวะ สอวน. ค่าย 1', tagline: 'ตะลุยโจทย์', group: 'mplai', category: 'แข่งขันวิชาการ', tracks: ['แข่งขันวิชาการ', 'สอวน.'] }),
+    testCourse({ slug: 'b', title: 'ปรับพื้นฐาน ม.4', tagline: 'ปูพื้นฐาน', group: 'mplai', category: 'ปรับพื้นฐาน', tracks: ['ปรับพื้นฐาน', 'A-Level'] }),
+    testCourse({ slug: 'c', title: 'ชีวะ ม.2', tagline: 'เตรียมสอบ', group: 'mton', category: 'แข่งขันวิชาการ', tracks: ['แข่งขันวิชาการ'] }),
+  ]
+  const cat = createCatalog(testContent({ courses: cs }))
+  const slugs = (f: Parameters<typeof cat.courseList>[0]) => cat.courseList(f).cards.map((c) => c.slug)
+
+  it('filters by track; a course with several tracks matches each of them', () => {
+    expect(slugs({ group: 'mplai', track: 'A-Level' })).toEqual(['b'])
+    expect(slugs({ group: 'mplai', track: 'แข่งขันวิชาการ' })).toEqual(['a'])
+    expect(slugs({ track: 'แข่งขันวิชาการ' })).toEqual(['a', 'c'])
+  })
+
+  it('computes the track options from the data of the chosen group, in sheet order', () => {
+    expect(cat.courseList({ group: 'mplai' }).trackOptions).toEqual(['แข่งขันวิชาการ', 'สอวน.', 'ปรับพื้นฐาน', 'A-Level'])
+    expect(cat.courseList({ group: 'mton' }).trackOptions).toEqual(['แข่งขันวิชาการ'])
+    expect(cat.courseList({}).trackOptions).toEqual(['แข่งขันวิชาการ', 'สอวน.', 'ปรับพื้นฐาน', 'A-Level'])
+  })
+
+  it('searches title, tagline, category and track, ignoring case; every word must match', () => {
+    expect(slugs({ q: 'ค่าย' })).toEqual(['a'])
+    expect(slugs({ q: 'ปูพื้นฐาน' })).toEqual(['b'])
+    expect(slugs({ q: 'a-level' })).toEqual(['b'])
+    expect(slugs({ q: 'สอวน' })).toEqual(['a'])
+    expect(slugs({ q: 'ชีวะ แข่งขัน' })).toEqual(['a', 'c'])
+    expect(slugs({ q: 'ชีวะ ปรับพื้นฐาน' })).toEqual([])
+    expect(slugs({ q: '   ' })).toEqual(['a', 'b', 'c'])
+  })
+
+  it('combines group, track and search', () => {
+    expect(slugs({ group: 'mton', q: 'ชีวะ' })).toEqual(['c'])
+    expect(slugs({ group: 'mplai', track: 'แข่งขันวิชาการ', q: 'ชีวะ' })).toEqual(['a'])
+  })
+
+  it('flags an empty result so the page can offer to ask the admin', () => {
+    expect(cat.courseList({ q: 'ไม่มีแน่นอน' })).toMatchObject({ cards: [], empty: true, resultText: 'ไม่พบคอร์สที่ตรงกับที่ค้นหา' })
+    expect(cat.courseList({}).empty).toBe(false)
+  })
+
+  it('knows whether any filter is on, and where "clear all" goes', () => {
+    expect(cat.courseList({})).not.toHaveProperty('clearHref')
+    expect(cat.courseList({ q: 'x' }).clearHref).toBe('/courses')
+    expect(cat.courseList({ group: 'mton' }).clearHref).toBe('/courses')
+  })
+
+  it('keeps the search but drops the track on the group tabs, so changing group clears the track', () => {
+    expect(cat.courseList({ group: 'mplai', track: 'A-Level', q: 'x' }).tabs.map((t) => t.href)).toEqual([
+      '/courses?q=x',
+      '/courses?group=prathom&q=x',
+      '/courses?group=mton&q=x',
+      '/courses?group=mplai&q=x',
+    ])
+  })
+})
+
+describe('track and search in the URL', () => {
+  it.each([
+    {},
+    { group: 'mplai' as const, track: 'สอวน.' },
+    { track: 'แข่งขันวิชาการ', q: 'ชีวะ ม.4' },
+    { group: 'mton' as const, track: 'x y', q: 'a&b=c' },
+  ])('turns %o into a query and back unchanged', (filters) => {
+    expect(parseFilters(new URLSearchParams(filtersToQuery(filters)))).toEqual(filters)
+  })
+
+  it('drops empty or blank values and trims the search', () => {
+    expect(parseFilters(new URLSearchParams('track=&q=%20%20'))).toEqual({})
+    expect(parseFilters(new URLSearchParams('q=%20ชีวะ%20'))).toEqual({ q: 'ชีวะ' })
+  })
+})
+
+describe('goal cards', () => {
+  it('link to the list filtered by the group and track of the card', () => {
+    const site = testSite({
+      goalCards: [{ title: 't', desc: 'd', filter: { group: 'mton', category: 'สอบเข้า ม.4' } }],
+    })
+
+    expect(createCatalog(testContent({ site })).coursesPage().goals[0]?.href).toBe('/courses?group=mton&track=%E0%B8%AA%E0%B8%AD%E0%B8%9A%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2+%E0%B8%A1.4')
+  })
+})
+
 // ตัวเลขของ content/ จริงวันนี้ · ถ้าชีตเพิ่มหรือลบคอร์ส ให้แก้ตัวเลขในเทสต์นี้ตาม (เทสต์นี้ไม่ได้รันก่อน build)
 describe('courseList() on the real content', () => {
   it('counts 44 courses in all, 8 in ประถม, 12 in ม.ต้น and 24 in ม.ปลาย', () => {
@@ -99,7 +182,7 @@ describe('courseList() on the real content', () => {
 })
 
 describe('coursesPage()', () => {
-  it('turns each goal card in site.json into a link to the list filtered by its group', () => {
+  it('turns each goal card in site.json into a link to the list filtered by its group and track', () => {
     const site = testSite({
       goalCards: [
         { title: 'อยู่ ม.ต้น อยากสอบเข้า ม.4', desc: 'ปรับพื้นฐานวิทย์', filter: { group: 'mton', category: 'สอบเข้า ม.4' } },
@@ -108,8 +191,8 @@ describe('coursesPage()', () => {
     })
 
     expect(createCatalog(testContent({ site })).coursesPage().goals).toEqual([
-      { title: 'อยู่ ม.ต้น อยากสอบเข้า ม.4', desc: 'ปรับพื้นฐานวิทย์', href: '/courses?group=mton' },
-      { title: 'สายแข่งวิชาการ', desc: 'สอวน. สวช.', href: '/courses' },
+      { title: 'อยู่ ม.ต้น อยากสอบเข้า ม.4', desc: 'ปรับพื้นฐานวิทย์', href: listHref({ group: 'mton', track: 'สอบเข้า ม.4' }) },
+      { title: 'สายแข่งวิชาการ', desc: 'สอวน. สวช.', href: listHref({ track: 'แข่งขันวิชาการ' }) },
     ])
   })
 

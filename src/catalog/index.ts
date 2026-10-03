@@ -9,6 +9,7 @@ export { filtersToQuery, parseFilters } from './course-filters'
 export type { CourseContent, CourseDetail, CourseInstructor, CourseSets } from './course-detail'
 export type { Cover, CoverTone, Faq, NavLink, Stat } from './format'
 export type { SetCard, SetSavings } from './set-card'
+export type { SetFilters, SetList, SetListCard, SetListIndex } from './set-list'
 export type { SetDetail } from './set-detail'
 export type { ContentProblem } from './validate-content'
 
