@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest'
 import site from '@content/site.json'
 import { catalog } from '.'
 import { createCatalog } from './catalog'
-import { testContent, testCourse, testSite } from './test-content'
+import type { Site } from '@content/types'
+import { testContent, testCourse, testSet, testSite } from './test-content'
 
 describe('landing()', () => {
   it('returns hero stats in the order written in site.json', () => {
@@ -150,5 +151,45 @@ describe('landing() sections', () => {
 
     expect(landing.nav.map((l) => l.href)).toEqual(['/courses', '/sets', '/#teacher'])
     expect(landing.faqs).toEqual(faqs)
+  })
+})
+
+describe('landing() featured', () => {
+  const courses = [testCourse({ slug: 'c1', title: 'คอร์ส 1', price: 500 }), testCourse({ slug: 'c2', title: 'คอร์ส 2', price: 500 })]
+  const sets = [testSet({ code: 'PR-01', slug: 'pr-01-bundle', title: 'เซ็ต 1', price: 800, courseSlugs: ['c1', 'c2'] })]
+  const featuredOf = (featured: Site['featured']) => createCatalog(testContent({ courses, sets, site: testSite({ featured }) })).landing().featured
+
+  it('lists courses and sets in the order of site.json, mixed', () => {
+    const items = featuredOf([
+      { type: 'set', slug: 'pr-01-bundle', label: 'เซ็ตคุ้มกว่า' },
+      { type: 'course', slug: 'c2' },
+      { type: 'course', slug: 'c1', label: 'ขายดี' },
+    ])
+
+    expect(items.map((i) => [i.kind, i.card.slug, i.label])).toEqual([
+      ['set', 'pr-01-bundle', 'เซ็ตคุ้มกว่า'],
+      ['course', 'c2', undefined],
+      ['course', 'c1', 'ขายดี'],
+    ])
+  })
+
+  it('reuses the course card and the set card, and points the contact button at the item', () => {
+    const [set, course] = featuredOf([{ type: 'set', slug: 'pr-01-bundle' }, { type: 'course', slug: 'c1' }])
+
+    expect(set).toMatchObject({ kind: 'set', card: { href: '/sets/pr-01-bundle', codeLabel: 'เซ็ต PR-01', price: '800.-' }, contactItem: { kind: 'set', slug: 'pr-01-bundle', title: 'เซ็ต 1' } })
+    expect(course).toMatchObject({ kind: 'course', card: { href: '/courses/c1', price: '500.-' }, contactItem: { kind: 'course', slug: 'c1', title: 'คอร์ส 1' } })
+  })
+
+  it('is empty, so the page hides the section, when site.json has no featured items', () => {
+    expect(featuredOf([])).toEqual([])
+  })
+
+  it('skips an item that does not exist instead of breaking the page (the build check reports it)', () => {
+    expect(featuredOf([{ type: 'course', slug: 'nope' }, { type: 'course', slug: 'c1' }]).map((i) => i.card.slug)).toEqual(['c1'])
+  })
+
+  it('shows the 3 default items of content/site.json', () => {
+    expect(catalog.landing().featured).toHaveLength(3)
+    expect(catalog.validateContent()).toEqual([])
   })
 })

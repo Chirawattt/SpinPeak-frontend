@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import type { Course, CourseSet } from '@content/types'
 import { createCatalog } from './catalog'
-import { testContent, testCourse, testSet } from './test-content'
+import { testContent, testCourse, testSet, testSite } from './test-content'
 
 function problemsIn(courses: Course[], sets: CourseSet[] = []) {
   return createCatalog(testContent({ courses, sets })).validateContent()
@@ -223,5 +223,43 @@ describe('validateContent()', () => {
         message: 'ผู้สอน kru-unknown ไม่มีใน site.json',
       })
     })
+  })
+})
+
+describe('validateContent() featured', () => {
+  const { a, b, set } = consistent()
+  const problemsWith = (featured: { type: 'course' | 'set'; slug: string; label?: string }[]) =>
+    createCatalog(testContent({ courses: [a, b], sets: [set], site: testSite({ featured }) })).validateContent()
+
+  it('accepts courses and sets that exist, mixed in any order', () => {
+    expect(
+      problemsWith([
+        { type: 'set', slug: 'primary-p4-bundle', label: 'คุ้มกว่า' },
+        { type: 'course', slug: 'primary-science-p4' },
+      ]),
+    ).toEqual([])
+  })
+
+  it('reports a slug that does not exist', () => {
+    expect(problemsWith([{ type: 'course', slug: 'primary-sience-p4' }])).toEqual([
+      { where: 'ของแนะนำ #1 (course primary-sience-p4)', message: 'ไม่มีคอร์ส primary-sience-p4' },
+    ])
+    expect(problemsWith([{ type: 'set', slug: 'nope-bundle' }])).toEqual([
+      { where: 'ของแนะนำ #1 (set nope-bundle)', message: 'ไม่มีเซ็ต nope-bundle' },
+    ])
+  })
+
+  it('reports a type that does not match the slug, saying which it is', () => {
+    expect(problemsWith([{ type: 'course', slug: 'primary-p4-bundle' }])[0]?.message).toBe('primary-p4-bundle เป็นเซ็ต ไม่ใช่คอร์ส ให้เปลี่ยน type เป็น "set"')
+    expect(problemsWith([{ type: 'set', slug: 'primary-science-p4' }])[0]?.message).toBe('primary-science-p4 เป็นคอร์ส ไม่ใช่เซ็ต ให้เปลี่ยน type เป็น "course"')
+  })
+
+  it('reports an unknown type and a repeated item, counting from 1', () => {
+    const bad = { type: 'bundle', slug: 'primary-science-p4' } as unknown as { type: 'course'; slug: string }
+
+    expect(problemsWith([bad])[0]).toEqual({ where: 'ของแนะนำ #1 (bundle primary-science-p4)', message: 'type "bundle" ไม่รู้จัก ใช้ได้แค่ "course" หรือ "set"' })
+    expect(problemsWith([{ type: 'course', slug: 'primary-science-p4' }, { type: 'course', slug: 'primary-science-p4' }])).toEqual([
+      { where: 'ของแนะนำ #2 (course primary-science-p4)', message: 'ใส่ซ้ำกับรายการก่อนหน้า' },
+    ])
   })
 })

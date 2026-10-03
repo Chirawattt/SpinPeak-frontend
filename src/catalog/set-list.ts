@@ -54,25 +54,31 @@ export type SetList = {
   paging: Paging
 }
 
+/** การ์ดเซ็ตหนึ่งใบ · ใช้ทั้งหน้ารายการเซ็ตและส่วนของแนะนำบนหน้าแรก */
+export function buildSetListCard(set: CourseSet, courses: Course[], site: Site): SetListCard {
+  const derived = deriveSet(set, courses, site.config)
+  const savings = setSavings(derived)
+  return {
+    slug: set.slug,
+    href: `/sets/${set.slug}`,
+    codeLabel: `เซ็ต ${set.code}`,
+    title: set.title,
+    group: groupLabel(site, set.group),
+    courseCount: `${derived.courseCount} คอร์ส`,
+    cover: cover(set.group, set.coverImage),
+    price: formatBaht(set.price),
+    ...(savings && { savings }),
+    ...(set.status === 'coming_soon' && { statusLabel: 'เร็ว ๆ นี้' }),
+  }
+}
+
 export function buildSetListIndex(sets: CourseSet[], courses: Course[], site: Site): SetListIndex {
   return {
-    items: sets.map((set) => {
-      const derived = deriveSet(set, courses, site.config)
-      const savings = setSavings(derived)
-      const card: SetListCard = {
-        slug: set.slug,
-        href: `/sets/${set.slug}`,
-        codeLabel: `เซ็ต ${set.code}`,
-        title: set.title,
-        group: groupLabel(site, set.group),
-        courseCount: `${derived.courseCount} คอร์ส`,
-        cover: cover(set.group, set.coverImage),
-        price: formatBaht(set.price),
-        ...(savings && { savings }),
-        ...(set.status === 'coming_soon' && { statusLabel: 'เร็ว ๆ นี้' }),
-      }
-      return { group: set.group, text: [set.title, set.tagline, set.code].join(' ').toLowerCase(), card }
-    }),
+    items: sets.map((set) => ({
+      group: set.group,
+      text: [set.title, set.tagline, set.code].join(' ').toLowerCase(),
+      card: buildSetListCard(set, courses, site),
+    })),
     groups: site.groups.map((g) => ({ key: g.key, label: g.label })),
     paging: { first: site.config.listPageSize, step: site.config.listPageIncrement },
   }

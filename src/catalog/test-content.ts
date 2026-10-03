@@ -67,6 +67,7 @@ export function testSite(overrides: Partial<Site> = {}): Site {
       hours: '',
     },
     goalCards: [],
+    featured: [],
     faqs: [],
     config: {
       lifetimeLabel: 'ตลอดชีพ',

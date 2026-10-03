@@ -115,5 +115,26 @@ export function validateContent(content: Content): ContentProblem[] {
     }
   }
 
+  // ของแนะนำบนหน้าแรก: type ต้องถูก slug ต้องมีอยู่จริงในตารางนั้น และไม่ซ้ำ
+  const seenFeatured = new Set<string>()
+  site.featured.forEach((item, i) => {
+    const where = `ของแนะนำ #${i + 1} (${item.type} ${item.slug})`
+    if (item.type !== 'course' && item.type !== 'set') {
+      report(where, `type "${item.type}" ไม่รู้จัก ใช้ได้แค่ "course" หรือ "set"`)
+      return
+    }
+    const key = `${item.type}:${item.slug}`
+    if (seenFeatured.has(key)) report(where, 'ใส่ซ้ำกับรายการก่อนหน้า')
+    seenFeatured.add(key)
+    const [own, other] = item.type === 'course' ? [courseSlugs, setSlugs] : [setSlugs, courseSlugs]
+    if (own.has(item.slug)) return
+    if (other.has(item.slug)) {
+      const [is, isNot, want] = item.type === 'course' ? ['เซ็ต', 'คอร์ส', 'set'] : ['คอร์ส', 'เซ็ต', 'course']
+      report(where, `${item.slug} เป็น${is} ไม่ใช่${isNot} ให้เปลี่ยน type เป็น "${want}"`)
+    } else {
+      report(where, `ไม่มี${item.type === 'course' ? 'คอร์ส' : 'เซ็ต'} ${item.slug}`)
+    }
+  })
+
   return problems
 }

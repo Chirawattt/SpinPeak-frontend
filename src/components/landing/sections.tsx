@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import type { ClipCard, GroupEntry, Landing, ReviewQuote, Teacher } from '@/catalog'
+import type { ClipCard, FeaturedCard as FeaturedCardData, GroupEntry, Landing, ReviewQuote, Teacher } from '@/catalog'
 import { ContactButton } from '@/components/contact-button'
+import { CoverBox } from '@/components/cover-box'
 import { FaqList } from '@/components/faq-list'
 
 // ส่วนต่าง ๆ ของหน้าแรก ตาม design-landing.html · ส่วนที่ design ไม่มี (ทางเข้า 3 กลุ่ม, FAQ) ใช้โทนเดียวกัน
@@ -147,5 +148,69 @@ export function FloatingContact() {
     <ContactButton variant="brand" className="fixed right-4 bottom-4 z-20 px-6 py-3 text-[15px] shadow-card md:hidden">
       ทักแอดมิน
     </ContactButton>
+  )
+}
+
+/** "คอร์สขายดี": ของแนะนำที่เจ้าของเลือกใน site.json ผสมคอร์สกับเซ็ต · ว่างให้ผู้เรียกไม่ render */
+export function FeaturedSection({ items }: { items: FeaturedCardData[] }) {
+  return (
+    <section aria-labelledby="featured-title" className="px-gutter py-14">
+      <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+        <h2 id="featured-title" className={SECTION_TITLE}>
+          คอร์สขายดี
+        </h2>
+        <Link href="/courses" className="text-[15px] font-semibold hover:text-link-hover">
+          ดูคอร์สทั้งหมด →
+        </Link>
+      </div>
+      <ul className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-[22px]">
+        {items.map((item) => (
+          <li key={`${item.kind}:${item.card.slug}`} className="flex">
+            <FeaturedCard item={item} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+/** ใช้ข้อมูลการ์ดเดิมของคอร์ส / เซ็ต · ชื่อกดเข้าหน้ารายละเอียด ส่วนปุ่มสมัครเป็นปุ่มติดต่อ (จึงไม่ห่อทั้งใบด้วยลิงก์) */
+function FeaturedCard({ item }: { item: FeaturedCardData }) {
+  const { card } = item
+  const isCourse = item.kind === 'course'
+  return (
+    <article className="relative flex w-full flex-col overflow-hidden rounded-[18px] border border-line bg-white transition-shadow hover:shadow-card">
+      <div className="relative">
+        <CoverBox cover={card.cover} label={isCourse ? item.card.label : item.card.codeLabel} title={card.title} className="rounded-none!" />
+        {item.label && <span className="absolute top-3 left-3 rounded-full bg-ink px-3 py-1 text-xs font-semibold text-white">{item.label}</span>}
+      </div>
+      <div className="flex flex-1 flex-col gap-[9px] px-5 pt-[18px] pb-5">
+        <div className="font-mono text-xs font-semibold text-link-hover">{isCourse ? item.card.label : `${item.card.codeLabel} · ${item.card.group}`}</div>
+        <h3 className="font-heading text-xl leading-[1.3] font-semibold">
+          <Link href={card.href} className="after:absolute after:inset-0 hover:text-link-hover">
+            {card.title}
+          </Link>
+        </h3>
+        <p className="flex-1 text-[14.5px] leading-relaxed text-muted">{isCourse ? item.card.tagline : `รวม ${item.card.courseCount}`}</p>
+        {isCourse && item.card.facts && <p className="text-[13.5px] text-muted">{item.card.facts}</p>}
+        <div className="mt-1 flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+          <span className="font-heading text-[26px] font-bold">{card.price}</span>
+          {!isCourse && item.card.savings && (
+            <span className="text-[15px] text-strike line-through">
+              <span className="sr-only">ราคาปกติ </span>
+              {item.card.savings.regularPrice}
+            </span>
+          )}
+        </div>
+        {!isCourse && item.card.savings && (
+          <div className="text-sm font-semibold text-link-hover">
+            ประหยัด {item.card.savings.amount} ({item.card.savings.percent})
+          </div>
+        )}
+        <ContactButton item={item.contactItem} variant="brand" className="relative z-10 mt-1 p-[13px] text-base">
+          สมัครเรียนเลย
+        </ContactButton>
+      </div>
+    </article>
   )
 }

@@ -82,10 +82,6 @@ type Course = {
   coverImage?: string          // "covers/biocontest-ku.jpg" ไม่ใส่ = ใช้ลายเส้นแทน
   previewVideoUrl?: string     // ลิงก์ YouTube คลิปตัวอย่าง ไม่ใส่ = ซ่อนบล็อกนั้น
 
-  // ── การจัดวางหน้าแรก ────────────────────────────────────
-  featuredRank?: number        // 1, 2, 3 ... ใช้เรียงในส่วน "คอร์สขายดี"
-  featuredLabel?: string       // "ขายดีอันดับ 1" โชว์เป็นป้ายบนหน้า detail
-
   // ── ความสัมพันธ์ ─────────────────────────────────────────
   setCodes: string[]           // ["BC-01","BC-02"] ตรวจกับ sets.json ตอน build
 }
@@ -130,8 +126,6 @@ type Course = {
   "deliverables": "ไฟล์ PDF + คลิปวิดีโอ (ไม่จำกัดอายุ)",
   "coverImage": "covers/biocontest.jpg",
   "previewVideoUrl": null,
-  "featuredRank": 1,
-  "featuredLabel": "ขายดีอันดับ 1",
   "setCodes": ["BC-01", "BC-02"]
 }
 ```
@@ -182,7 +176,6 @@ type CourseSet = {
   price: number                // ราคาเซ็ต
   status: 'open' | 'coming_soon'
   coverImage?: string
-  featuredRank?: number
 }
 ```
 
@@ -195,8 +188,7 @@ type CourseSet = {
   "group": "mplai",
   "courseSlugs": ["biocontest-ku", "biocontest-otter"],
   "price": 999,
-  "status": "open",
-  "featuredRank": 3
+  "status": "open"
 }
 ```
 
@@ -239,6 +231,10 @@ type Site = {
     hours: string                // "จันทร์–เสาร์ 10:00–19:00 น."
     youtubeChannelUrl?: string
   }
+
+  // ของแนะนำบนหน้าแรก (ส่วน "คอร์สขายดี") เรียงตามลำดับในนี้ · ว่าง = ซ่อนทั้งส่วน
+  // slug ผิดหรือ type ไม่ตรง (course/set) → build พัง
+  featured: { type: 'course' | 'set'; slug: string; label?: string }[]
 
   goalCards: { title: string; desc: string; filter: object }[]  // "ไม่แน่ใจว่าเรียนอะไรดี"
 

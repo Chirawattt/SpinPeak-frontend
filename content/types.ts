@@ -68,8 +68,6 @@ export type Course = {
   coverImage?: string
   previewVideoUrl?: string
   faqs?: { q: string; a: string }[]
-  featuredRank?: number
-  featuredLabel?: string
 }
 
 export type CourseSet = {
@@ -85,7 +83,6 @@ export type CourseSet = {
   /** slug ของคอร์สสมาชิก เรียงตามลำดับในชีต */
   courseSlugs: string[]
   coverImage?: string
-  featuredRank?: number
 }
 
 export type Instructor = {
@@ -97,6 +94,14 @@ export type Instructor = {
   tags: string[]
   photoHero?: string
   photoAvatar?: string
+}
+
+/** คอร์สหรือเซ็ตที่เจ้าของเลือกขึ้นหน้าแรก · slug ผิดหรือ type ไม่ตรง build จะพัง (validateContent) */
+export type FeaturedItem = {
+  type: 'course' | 'set'
+  slug: string
+  /** ป้ายบนการ์ด เช่น "ขายดี" · ไม่ใส่ = ไม่มีป้าย */
+  label?: string
 }
 
 export type Site = {
@@ -127,6 +132,8 @@ export type Site = {
     desc: string
     filter: { group?: Group; category?: string }
   }[]
+  /** ของแนะนำบนหน้าแรก เรียงตามลำดับนี้ · ว่าง = ซ่อนส่วน "คอร์สขายดี" ทั้งส่วน */
+  featured: FeaturedItem[]
   faqs: { q: string; a: string }[]
   config: {
     lifetimeLabel: string

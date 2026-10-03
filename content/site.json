@@ -85,6 +85,12 @@
     }
   ],
 
+  "featured": [
+    { "type": "course", "slug": "posn-biology-66", "label": "ขายดี" },
+    { "type": "set", "slug": "biocontest-bundle", "label": "เซ็ตคุ้มกว่า" },
+    { "type": "course", "slug": "nat-senior-biology" }
+  ],
+
   "faqs": [
     {
       "q": "ซื้อคอร์สแล้วดูได้นานแค่ไหน",
