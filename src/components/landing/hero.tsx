@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import type { Landing } from '@/catalog'
+import { ContactButton } from '@/components/contact-button'
 
 // ตัดรูปครูเป็นวงกลม โดยให้หัวโผล่พ้นวงขึ้นไป (ลอกจาก design-landing.html)
 const PHOTO_MASK = [
@@ -24,6 +25,15 @@ export function Hero({ hero }: { hero: Landing['hero'] }) {
           ))}
         </h1>
         <p className="max-w-[460px] text-lg leading-[1.7] text-ink-soft">{hero.subtitle}</p>
+
+        <div className="mt-8 flex flex-wrap gap-3.5">
+          <ContactButton className="px-[34px] py-4 text-[17px]">สมัครเรียนเลย</ContactButton>
+          {hero.showClipsLink && (
+            <a href="#clips" className="rounded-full border-[1.5px] border-outline px-[26px] py-4 text-[17px] font-semibold transition-colors hover:border-brand hover:bg-brand-wash">
+              ดูตัวอย่างคลิปสอน
+            </a>
+          )}
+        </div>
 
         <dl className="mt-[38px] flex flex-wrap gap-x-[34px] gap-y-[22px]">
           {hero.stats.map((stat) => (

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import site from '@content/site.json'
 import { catalog } from '.'
 import { createCatalog } from './catalog'
-import { testContent, testSite } from './test-content'
+import { testContent, testCourse, testSite } from './test-content'
 
 describe('landing()', () => {
   it('returns hero stats in the order written in site.json', () => {
@@ -91,5 +91,64 @@ describe('footer()', () => {
       { label: 'ม.ต้น', href: '/courses?group=mton' },
       { label: 'ม.ปลาย', href: '/courses?group=mplai' },
     ])
+  })
+})
+
+describe('landing() sections', () => {
+  const clip = { title: 'ไมโอซิส', sourceLabel: 'ตัดจากคอร์ส ม.ปลาย', minutes: 8, youtubeUrl: 'https://youtu.be/x' }
+  const review = { id: 'r1', quote: 'คุ้มมากครับ', studentName: 'น้องเจได', grade: 'ม.4' }
+  const courses = [
+    testCourse({ slug: 'a', group: 'mplai' }),
+    testCourse({ slug: 'b', group: 'mplai' }),
+    testCourse({ slug: 'c', group: 'prathom' }),
+  ]
+  const landingOf = (over: Parameters<typeof testContent>[0] = {}) => createCatalog(testContent({ courses, ...over })).landing()
+
+  it('gives one entry per group with its real course count, linking to the filtered list', () => {
+    expect(landingOf().groups).toEqual([
+      { label: 'ประถม', count: '1 คอร์ส', href: '/courses?group=prathom' },
+      { label: 'ม.ต้น', count: '0 คอร์ส', href: '/courses?group=mton' },
+      { label: 'ม.ปลาย', count: '2 คอร์ส', href: '/courses?group=mplai' },
+    ])
+  })
+
+  it('counts the real courses per group on content/', () => {
+    expect(catalog.landing().groups.map((g) => g.count)).toEqual(['8 คอร์ส', '12 คอร์ส', '24 คอร์ส'])
+  })
+
+  it('introduces the main instructor from site.json', () => {
+    const instructor = { slug: 'kru-nam', name: 'ครูพี่หนาม', role: '', shortBio: 'สั้น', longBio: 'ยาว', tags: ['สอนจากข้อสอบจริง'] }
+
+    expect(landingOf({ site: testSite({ instructors: [instructor] }) }).teacher).toEqual({
+      name: 'ครูพี่หนาม',
+      bio: 'ยาว',
+      tags: ['สอนจากข้อสอบจริง'],
+    })
+  })
+
+  it('hides clips and reviews, and the links to them, while clips.json and reviews.json are empty', () => {
+    const landing = landingOf({ clips: [], reviews: [] })
+
+    expect(landing.clips).toEqual([])
+    expect(landing.reviews).toEqual([])
+    expect(landing.hero.showClipsLink).toBe(false)
+    expect(landing.nav.map((l) => l.href)).not.toContain('/#reviews')
+  })
+
+  it('shows them once there are some', () => {
+    const landing = landingOf({ clips: [clip], reviews: [review] })
+
+    expect(landing.clips).toEqual([{ title: 'ไมโอซิส', meta: 'ตัดจากคอร์ส ม.ปลาย · 8 นาที', href: 'https://youtu.be/x' }])
+    expect(landing.reviews).toEqual([{ quote: 'คุ้มมากครับ', by: 'น้องเจได · ม.4' }])
+    expect(landing.hero.showClipsLink).toBe(true)
+    expect(landing.nav.map((l) => l.href)).toContain('/#reviews')
+  })
+
+  it('always links the teacher section in the menu, and shows the FAQ from site.json', () => {
+    const faqs = [{ q: 'ดูได้นานแค่ไหน', a: 'ตลอดชีพ' }]
+    const landing = landingOf({ site: testSite({ faqs }) })
+
+    expect(landing.nav.map((l) => l.href)).toEqual(['/courses', '/sets', '/#teacher'])
+    expect(landing.faqs).toEqual(faqs)
   })
 })

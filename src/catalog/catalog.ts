@@ -3,9 +3,9 @@
 
 import type { Clip, Course, CourseSet, Review, Site } from '@content/types'
 import { buildCourseDetail, type CourseDetail } from './course-detail'
-import type { CourseFilters } from './course-filters'
-import { buildCourseListIndex, buildCoursesPage, filterCourseList, type CourseList } from './course-list'
-import { groupLink, nonEmpty, type NavLink } from './format'
+import { listHref, type CourseFilters } from './course-filters'
+import { buildCourseListIndex, buildCoursesPage, filterCourseList, type CourseList, type ReviewQuote } from './course-list'
+import { groupLink, nonEmpty, type Faq, type NavLink } from './format'
 import { buildSetDetail, type SetDetail } from './set-detail'
 import { buildSetListIndex, filterSetList, type SetFilters, type SetList } from './set-list'
 import { validateContent } from './validate-content'
@@ -29,8 +29,27 @@ export type Landing = {
     stats: HeroStat[]
     /** ชื่อผู้สอนหลัก ใช้เป็น alt ของรูปใน hero */
     photoAlt: string
+    /** false เมื่อ clips.json ว่าง ให้ซ่อนปุ่ม "ดูตัวอย่างคลิปสอน" */
+    showClipsLink: boolean
   }
+  /** ทางเข้า 3 กลุ่ม ตามลำดับใน site.json */
+  groups: GroupEntry[]
+  /** ไม่มีค่าเมื่อ site.json ไม่มีผู้สอน ให้ซ่อนส่วนแนะนำครู */
+  teacher?: Teacher
+  /** ว่างเมื่อ clips.json ว่าง ให้ซ่อนทั้งส่วน */
+  clips: ClipCard[]
+  /** ว่างเมื่อ reviews.json ว่าง ให้ซ่อนทั้งส่วน */
+  reviews: ReviewQuote[]
+  faqs: Faq[]
+  /** เมนูหัวเว็บ · ลิงก์ไปส่วนที่ซ่อนอยู่จะไม่โผล่ */
+  nav: NavLink[]
 }
+
+export type GroupEntry = { label: string; /** เช่น "24 คอร์ส" */ count: string; href: string }
+
+export type Teacher = { name: string; bio: string; tags: string[] }
+
+export type ClipCard = { title: string; /** เช่น "ตัดจากคอร์ส ม.ปลาย · 8 นาที" */ meta: string; href: string; thumbnail?: string }
 
 export type SocialLink = { kind: 'instagram' | 'facebook'; label: string; href: string }
 
@@ -49,15 +68,33 @@ export function createCatalog(content: Content) {
   const { site, courses, sets } = content
 
   function landing(): Landing {
+    // ผู้สอนหลักคือคนแรกใน site.json
+    const main = site.instructors[0]
+    const teacher = main && { name: main.name, bio: nonEmpty(main.longBio) ?? main.shortBio, tags: main.tags }
+    const clips = content.clips.map((c) => ({ title: c.title, meta: `${c.sourceLabel} · ${c.minutes} นาที`, href: c.youtubeUrl, ...(nonEmpty(c.thumbnail) && { thumbnail: c.thumbnail }) }))
+    const reviews = content.reviews.map((r) => ({ quote: r.quote, by: `${r.studentName} · ${r.grade}` }))
+    const countIn = (group: string) => courses.filter((c) => c.group === group).length
+
     return {
       hero: {
         badge: site.brand.heroBadge,
         titleLines: site.brand.heroTitle.split('\n'),
         subtitle: site.brand.heroSubtitle,
         stats: site.heroStats,
-        // ผู้สอนหลักคือคนแรกใน site.json
-        photoAlt: site.instructors[0]?.name ?? site.brand.name,
+        photoAlt: main?.name ?? site.brand.name,
+        showClipsLink: clips.length > 0,
       },
+      groups: site.groups.map((g) => ({ label: g.label, count: `${countIn(g.key)} คอร์ส`, href: listHref({ group: g.key }) })),
+      ...(teacher && { teacher }),
+      clips,
+      reviews,
+      faqs: site.faqs,
+      nav: [
+        { label: 'คอร์สเรียน', href: '/courses' },
+        { label: 'เซ็ตคอร์ส', href: '/sets' },
+        ...(teacher ? [{ label: 'แนะนำครู', href: '/#teacher' }] : []),
+        ...(reviews.length > 0 ? [{ label: 'รีวิว', href: '/#reviews' }] : []),
+      ],
     }
   }
 

@@ -82,7 +82,7 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="border-t border-divider-soft px-gutter pt-[18px] pb-[30px] text-[13.5px] text-muted">
+      <div className="border-t border-divider-soft px-gutter pt-[18px] pb-[30px] max-md:pb-24 text-[13.5px] text-muted">
         © {new Date().getFullYear()} {name}. สงวนลิขสิทธิ์
       </div>
     </footer>
