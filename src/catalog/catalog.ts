@@ -8,6 +8,7 @@ import { buildCourseDetail, type CourseDetail } from './course-detail'
 import { listHref, type CourseFilters } from './course-filters'
 import { buildCourseListIndex, buildCoursesPage, filterCourseList, type CourseList, type ReviewQuote } from './course-list'
 import { groupLink, nonEmpty, type Faq, type NavLink } from './format'
+import { courseOgCard, pageOgCard, setOgCard, type OgCard, type OgPage } from './og'
 import { buildSetDetail, type SetDetail } from './set-detail'
 import { buildSetListCard, buildSetListIndex, filterSetList, type SetFilters, type SetList, type SetListCard } from './set-list'
 import { validateContent } from './validate-content'
@@ -166,8 +167,24 @@ export function createCatalog(content: Content) {
     return set && buildSetDetail(set, courses, site)
   }
 
+  /** ข้อมูลบนรูป OG ของคอร์ส · undefined เมื่อไม่มีคอร์ส slug นี้ */
+  function courseOg(slug: string): OgCard | undefined {
+    const course = courses.find((c) => c.slug === slug)
+    return course && courseOgCard(course, site)
+  }
+
+  /** ข้อมูลบนรูป OG ของเซ็ต · undefined เมื่อไม่มีเซ็ต slug นี้ */
+  function setOg(slug: string): OgCard | undefined {
+    const set = sets.find((s) => s.slug === slug)
+    return set && setOgCard(set, courses, site)
+  }
+
   return {
     siteInfo,
+    courseOg,
+    setOg,
+    /** รูป OG ทั่วไปของหน้าแรกกับหน้ารายการ */
+    pageOg: (page: OgPage) => pageOgCard(page, site),
     landing,
     footer,
     courseDetail,
